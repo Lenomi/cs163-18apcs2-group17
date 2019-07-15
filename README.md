@@ -22,23 +22,29 @@ Thành viên:
 -email:nhockcon21@gmail.com
 
 ------------------------------------------
-Introduction
+>>Introduction
+
 In this project, you will be designing and implementing a mini search engine. You are probably familiar
 with Google, Bing, which are some of the most popular search engines that you can find on the Web.
 The task performed by a search engine is, as the name says, to search through a collection of documents.
 Given a set of texts and a query, the search engine locates all documents that contain the keywords in
 the query. The problem may be therefore reduced to a search problem, which can be efficiently solved
 with the data structures we have studied in this class.
+
 Your task
+
 Your task is to design and implement an algorithm that searches a collection of documents. You will have
 a lot of documents and a set of sample queries. You have the freedom to select the data structures and
 algorithms that you consider to be more efficient for this task. Of course, you will have to justify your
 decisions.
+
 First, you will process the documents and store their content (i.e. words / tokens) in the data structures
 that you selected (in information retrieval, this phase is called indexing). Next, for every input query, you
 will process the query and search its keywords in the documents; using the previously implemented data
 structures and an algorithm of your choice (the phase is called retrieval). For each such query, you will
 have to display the documents that satisfy the query.
+
+
 English stopwords should be removed if they appears in the queries. Link: http://www.ranks.nl/stopwords
 The search engine should support several operator such as:
 1. AND
@@ -60,6 +66,8 @@ search engine should suggest it. See auto suggestion feature in Google for inspi
 
 Hints
 As data structures, you must use trees – such as 2-3 trees, AVL trees, balanced binary search trees, trie
+
+
 What to turn in
 
 CS163 Final Project
