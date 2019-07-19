@@ -4,6 +4,7 @@
 #include<iostream>
 #include<string>
 #include <queue>
+#include<cctype>
 using namespace std;
 
 const int ALPHABET_SIZE = 26;

@@ -7,11 +7,11 @@ void insert_Node(struct TrieNode *root, string key)
 	for (int level = 0; level < key.length(); level++)
 	{
 		int index;
-		if (key[level] >= 97) index = key[level] - 'a';
-		else if (key[level] <= 57 && key[level] >= 48) index = key[level] - 22;
-		if (pCrawl->children[index] == NULL)
-			pCrawl->children[index] = createNode();
-		pCrawl = pCrawl->children[index];
+		if (TurnIntoTrieCharacters(index,level,key)) {
+			if (pCrawl->children[index] == NULL)
+				pCrawl->children[index] = createNode();
+			pCrawl = pCrawl->children[index];
+		}
 	}
 	pCrawl->isEnd = true;
 }
@@ -25,15 +25,11 @@ bool search(struct TrieNode *root, const string key)
 	for (int level = 0; level < lenght; level++)
 	{
 		int index;
-		if (key[level] >= 97) index = key[level] - 'a';
-		else if (key[level] <= 57 && key[level] >= 48) index = key[level] - 22;
-		else
-		{
-
+		if (TurnIntoTrieCharacters(index, level, key)) {
+			if (pCrawl->children[index] == NULL)
+				return false;
+			pCrawl = pCrawl->children[index];
 		}
-		if (pCrawl->children[index] == NULL)
-			return false;
-		pCrawl = pCrawl->children[index];
 	}
 	return (pCrawl != NULL && pCrawl->isEnd);
 }
@@ -73,14 +69,9 @@ int AutoSuggestions(struct TrieNode *root, string query)
 	for (int level = 0; level < lenght; level++)
 	{
 		int index;
-		if (query[level] >= 97)
-			index = query[level] - 'a';
-		else if (query[level] <= 57 && query[level] >= 48) 
-			index = query[level] - 22;
-		if (!pCrawl->children[index])
+		if (TurnIntoTrieCharacters(index, level, query) && !pCrawl->children[index])//problem ?
 		{
 			return 0;
-
 		}
 		pCrawl = pCrawl->children[index];
 	}
@@ -103,4 +94,20 @@ int AutoSuggestions(struct TrieNode *root, string query)
 	}
 
 
+}
+
+bool TurnIntoTrieCharacters(int &index,int level, string key) {
+	if (key[level] >= 97 && key[level] <= 122) {
+		index = key[level] - 'a';
+		return true;
+	}
+	else if (key[level] >= 65 && key[level] <= 90) {
+		index = key[level] - 'A';
+		return true;
+	}
+	else if (key[level] <= 57 && key[level] >= 48) {
+		index = key[level] - 22;
+		return true;
+	}
+	return false;
 }
