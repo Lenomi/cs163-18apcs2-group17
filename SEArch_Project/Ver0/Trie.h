@@ -3,6 +3,7 @@
 
 #include<iostream>
 #include<string>
+#include <queue>
 using namespace std;
 
 const int ALPHABET_SIZE = 26;
@@ -32,7 +33,9 @@ void insert_Node(struct TrieNode *root, string key)
 	struct TrieNode* pCrawl = root;
 	for (int level = 0; level < key.length(); level++)
 	{
-		int index = key[level] - 'a';
+		int index;
+		if (key[level] >= 97) index = key[level] - 'a';
+		else if (key[level] <= 57 && key[level] >= 48) index = key[level] - 22;
 		if (pCrawl->children[index] == NULL)
 			pCrawl->children[index] = createNode();
 			pCrawl=pCrawl->children[index];
@@ -48,7 +51,13 @@ bool search(struct TrieNode *root, const string key)
 	struct TrieNode *pCrawl = root;
 	for (int level = 0; level < lenght; level++)
 	{
-		int index = key[level] - 'a';
+		int index;
+		if (key[level] >= 97) index = key[level] - 'a';
+		else if (key[level] <= 57 && key[level] >= 48) index = key[level] - 22;
+		else
+		{
+
+		}
 		if (pCrawl->children[index] == NULL)
 			return false;
 		pCrawl = pCrawl->children[index];
@@ -90,7 +99,9 @@ int AutoSuggestions(struct TrieNode *root, string query)
 	int lenght = query.length();
 	for (int level = 0; level < lenght; level++)
 	{
-		int index = query[level] - 'a';
+		int index
+		if (query[level]>=97) index = query[level] - 'a';
+		else if (query[level] <= 57 && query[level] >=48) index = query[level] - 22;
 		if (!pCrawl->children[index])
 		{
 			return 0;
