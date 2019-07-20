@@ -7,13 +7,14 @@ void insert_Node(struct TrieNode *root, string key)
 	for (int level = 0; level < key.length(); level++)
 	{
 		int index;
-		if (TurnIntoTrieCharacters(index,level,key)) {
+		if (find_slot(index,level,key)) {
 			if (pCrawl->children[index] == NULL)
 				pCrawl->children[index] = createNode();
 			pCrawl = pCrawl->children[index];
 		}
 	}
 	pCrawl->isEnd = true;
+	pCrawl->key = key;
 }
 
 // serching a word 
@@ -25,7 +26,7 @@ bool search(struct TrieNode *root, const string key)
 	for (int level = 0; level < lenght; level++)
 	{
 		int index;
-		if (TurnIntoTrieCharacters(index, level, key)) {
+		if (find_slot(index, level, key)) {
 			if (pCrawl->children[index] == NULL)
 				return false;
 			pCrawl = pCrawl->children[index];
@@ -69,7 +70,7 @@ int AutoSuggestions(struct TrieNode *root, string query)
 	for (int level = 0; level < lenght; level++)
 	{
 		int index;
-		if (TurnIntoTrieCharacters(index, level, query) && !pCrawl->children[index])//problem ?
+		if (find_slot(index, level, query) && !pCrawl->children[index])//problem ?
 		{
 			return 0;
 		}
@@ -96,7 +97,7 @@ int AutoSuggestions(struct TrieNode *root, string query)
 
 }
 
-bool TurnIntoTrieCharacters(int &index,int level, string key) {
+bool find_slot(int &index,int level, string key) {
 	if (key[level] >= 97 && key[level] <= 122) {
 		index = key[level] - 'a';
 		return true;
@@ -111,3 +112,11 @@ bool TurnIntoTrieCharacters(int &index,int level, string key) {
 	}
 	return false;
 }
+
+void save_result(string file_name, string keyword) {
+	ofstream fout;
+	fout.open(keyword + ".txt",ios::app);
+	fout << file_name + ".txt\n";
+	fout.close();
+}
+
