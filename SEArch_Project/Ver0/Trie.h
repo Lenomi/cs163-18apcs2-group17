@@ -3,11 +3,12 @@
 
 #include<iostream>
 #include<string>
-#include <queue>
+#include<queue>
 #include<cctype>
+#include<fstream>
 using namespace std;
 
-const int ALPHABET_SIZE = 26;
+const int ALPHABET_SIZE = 36;
 
 //trie node
 struct TrieNode
@@ -15,10 +16,11 @@ struct TrieNode
 	TrieNode *children[ALPHABET_SIZE];
 	//isendofword is true if the node present the end a of word 
 	bool isEnd;
+	string key;
 };
 
 //creat new trie node
-struct TrieNode *createNode()
+TrieNode* createNode() //problem ?
 {
 	struct TrieNode *pNode = new TrieNode;
 	pNode->isEnd = NULL;
@@ -28,5 +30,19 @@ struct TrieNode *createNode()
 }
 
 // insert a key into trie tree
+void insert_Node(struct TrieNode *root, string key);
+bool search(struct TrieNode *root, const string key);
+bool isLastNode(struct TrieNode* root);
+void suggestionsRec(struct TrieNode * root, string currPrefix);
+int AutoSuggestions(struct TrieNode *root, string query);
+bool find_slot(int &index, int level, string key);
+
+
+
+
+
+
+
+
 
 #endif // !TRIE_H
