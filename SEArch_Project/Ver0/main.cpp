@@ -2,13 +2,13 @@
 
 int main()
 {
-	struct TrieNode *root = createNode();
-	insert_Node(root, "minh");
-	insert_Node(root, "minhoca");
+	TrieNode *Root = createNode();
+	Insersion(Root, "minh");
+	Insersion(Root, "minhoca");
 	
 	
 
-	int comp = AutoSuggestions(root, "mi");
+	int comp = AutoSuggestions(Root, "mi");
 
 	if (comp == -1)
 		cout << "No other strings found with this prefix\n";

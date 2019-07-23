@@ -1,6 +1,6 @@
 #include"Trie.h"
 
-void insert_Node(struct TrieNode *root, string key)
+void Insersion(struct TrieNode *root, string key)
 {
 
 	struct TrieNode* pCrawl = root;
@@ -15,6 +15,14 @@ void insert_Node(struct TrieNode *root, string key)
 	}
 	pCrawl->isEnd = true;
 	pCrawl->key = key;
+}
+TrieNode* createNode() //problem ?
+{
+	struct TrieNode *pNode = new TrieNode;
+	pNode->isEnd = NULL;
+	for (int i = 0; i < ALPHABET_SIZE; i++)
+		pNode->children[i] = NULL;
+	return pNode;
 }
 
 // serching a word 

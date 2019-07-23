@@ -77,7 +77,7 @@ Node* File::search(Node* root, int k)
 }
 void File::openFiles(vector<string>& vec_fileNames)
 {
-	int k = 1;
+	/*int k = 1;
 	for (int i = 0; i < vec_fileNames.size(); i++)
 	{
 		string fileName = vec_fileNames[i];
@@ -85,7 +85,6 @@ void File::openFiles(vector<string>& vec_fileNames)
 
 		ifstream fin;
 		fin.open(path.c_str());
-
 		if (!fin.is_open())
 		{
 			cout << "File " << vec_fileNames[i] << " Not Found! 2 " << endl;
@@ -99,10 +98,34 @@ void File::openFiles(vector<string>& vec_fileNames)
 				b = b + "\n" + a;
 			}
 			while (search(root, k) != nullptr) k++;
-			Insert(k, a, root);
+			Insert(k, b, root);
 		}	
 	}
-	cout << 1 << endl;
+	cout << 1<<endl;*/
+	for (int i = 0; i < vec_fileNames.size(); i++)
+	{
+		string fileName = vec_fileNames[i];
+		string path("test - Copy\\" + fileName);
+
+		ifstream fin1;
+		fin1.open(path.c_str());
+		if (!fin1.is_open())
+		{
+			cout << "File " << vec_fileNames[i] << " Not Found! 2 " << endl;
+		}
+		else
+		{
+			string c;
+			cout << vec_fileNames[i] << endl;
+			while (!fin1.eof())
+			{
+				fin1 >> c;
+				insert_Node(c);
+			}
+		}
+	}
+	cout << 2 << endl;//
+
 }
 void File::loadFileNames(vector<string>& vec_fileNames)
 {

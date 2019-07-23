@@ -20,17 +20,10 @@ struct TrieNode
 };
 
 //creat new trie node
-TrieNode* createNode() //problem ?
-{
-	struct TrieNode *pNode = new TrieNode;
-	pNode->isEnd = NULL;
-	for (int i = 0; i < ALPHABET_SIZE; i++)
-		pNode->children[i] = NULL;
-	return pNode;
-}
+TrieNode* createNode();
 
 // insert a key into trie tree
-void insert_Node(struct TrieNode *root, string key);
+void Insersion(struct TrieNode *root, string key);
 bool search(struct TrieNode *root, const string key);
 bool isLastNode(struct TrieNode* root);
 void suggestionsRec(struct TrieNode * root, string currPrefix);
