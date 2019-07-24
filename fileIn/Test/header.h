@@ -33,6 +33,8 @@ public:
 	void leftRotate(Node *&x);
 	void rightRotate(Node *&x);
 	Node* search(Node* root, int k);
+	void Cout_file(int k);
+	void Cout_name_file(vector<string>& vec_fileNames, int k);
 	void openFiles(vector<string>& vec_fileNames);
 	void loadFileNames(vector<string>& vec_fileNames);
 	//trie

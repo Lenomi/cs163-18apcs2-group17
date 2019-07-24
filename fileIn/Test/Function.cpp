@@ -77,7 +77,7 @@ Node* File::search(Node* root, int k)
 }
 void File::openFiles(vector<string>& vec_fileNames)
 {
-	/*int k = 1;
+	int k = 1;
 	for (int i = 0; i < vec_fileNames.size(); i++)
 	{
 		string fileName = vec_fileNames[i];
@@ -101,7 +101,8 @@ void File::openFiles(vector<string>& vec_fileNames)
 			Insert(k, b, root);
 		}	
 	}
-	cout << 1<<endl;*/
+	cout << 1<<endl;
+	/*
 	for (int i = 0; i < vec_fileNames.size(); i++)
 	{
 		string fileName = vec_fileNames[i];
@@ -124,8 +125,16 @@ void File::openFiles(vector<string>& vec_fileNames)
 			}
 		}
 	}
-	cout << 2 << endl;//
+	cout << 2 << endl;*/
 
+}
+void File::Cout_file(int k)
+{
+	cout << search(root, k)->data;
+}
+void File::Cout_name_file(vector<string>& vec_fileNames, int k)
+{
+	cout << vec_fileNames[k - 1];
 }
 void File::loadFileNames(vector<string>& vec_fileNames)
 {
