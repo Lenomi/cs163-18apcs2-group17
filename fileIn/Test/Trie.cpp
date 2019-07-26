@@ -1,6 +1,6 @@
 #include "header.h"
 
-void File::insert_Node(string key)
+void File::insert_Node(string key, int ID)
 {
 	if (root2 == nullptr)
 	{
@@ -25,12 +25,14 @@ void File::insert_Node(string key)
 		}
 	}
 	pCrawl->isEnd = true;
-	pCrawl->key = key;
+	pCrawl->file_ID.push_back(ID);
 }
-// serching a word 
+// searching a word 
 
-bool File::search(const string key)
+vector<int> File::search(const string key)
 {
+	vector<int> ID;
+	vector<int> occu;
 	int lenght = key.length();
 	TrieNode *pCrawl = root2;
 	for (int level = 0; level < lenght; level++)
@@ -38,11 +40,32 @@ bool File::search(const string key)
 		int index;
 		if (find_slot(index, level, key)) {
 			if (pCrawl->children[index] == nullptr)
-				return false;
+				return occu;
 			pCrawl = pCrawl->children[index];
 		}
 	}
-	return (pCrawl != nullptr && pCrawl->isEnd);
+	if (pCrawl != nullptr && pCrawl->isEnd) {
+		int vec_size = pCrawl->file_ID.size();
+		for (int i = 0; i < vec_size; i++) {
+			if (ID.empty() || ID.back() != pCrawl->file_ID[i]) {
+				ID.push_back(pCrawl->file_ID[i]);
+				occu.push_back(1);
+			}
+			else
+			{
+				occu.back() += 1;
+			}
+		}
+	}
+	int arr_size = ID.size();
+	mergeSort(occu, ID, 0, arr_size - 1);
+	return occu; // does it work ?
+	//need more code to return
+
+
+
+
+
 }
 
 bool File::isLastNode(TrieNode* root2)
@@ -123,10 +146,96 @@ bool File::find_slot(int &index, int level, string key) {
 	return false;
 }
 
-void save_result(string file_name, string keyword) {
-	ofstream fout;
-	fout.open(keyword + ".txt", ios::app);
-	fout << file_name + ".txt\n";
-	fout.close();
+string File::convert_word(string key) {
+	int leng = key.length;
+	string done;
+	int index;
+	for (int i = 0; i < leng; i++) {
+		if (find_slot(index, i, key)) {
+			done += char(index);
+		}
+	}
+	return done;
 }
 
+void File::merge(vector<int>arr,vector<int> ID, int l, int m, int r)
+{
+	int i, j, k;
+	int n1 = m - l + 1;
+	int n2 = r - m;
+
+	/* create temp arrays */
+	int* L = new int[n1];
+	int* L_ID = new int[n1];
+	int* R = new int[n2];
+	int* R_ID = new int[n2];
+
+	/* Copy data to temp arrays L[] and R[] */
+	for (i = 0; i < n1; i++) {
+		L[i] = arr[l + i];
+		L_ID[i] = ID[l + i];
+	}
+	for (j = 0; j < n2; j++) {
+		R[j] = arr[m + 1 + j];
+		R_ID[j] = ID[m + 1 + j];
+	}
+
+	/* Merge the temp arrays back into arr[l..r]*/
+	i = 0; // Initial index of first subarray 
+	j = 0; // Initial index of second subarray 
+	k = l; // Initial index of merged subarray 
+	while (i < n1 && j < n2)
+	{
+		if (L[i] >= R[j])
+		{
+			arr[k] = L[i];
+			ID[k] = L_ID[i];
+			i++;
+		}
+		else
+		{
+			arr[k] = R[j];
+			ID[k] = R_ID[i];
+			j++;
+		}
+		k++;
+	}
+
+	/* Copy the remaining elements of L[], if there
+	   are any */
+	while (i < n1)
+	{
+		arr[k] = L[i];
+		ID[k] = L_ID[i];
+		i++;
+		k++;
+	}
+
+	/* Copy the remaining elements of R[], if there
+	   are any */
+	while (j < n2)
+	{
+		arr[k] = R[j];
+		ID[k] = R_ID[j];
+		j++;
+		k++;
+	}
+}
+
+/* l is for left index and r is right index of the
+   sub-array of arr to be sorted */
+void File::mergeSort(vector<int>arr, vector<int> ID, int l, int r)
+{
+	if (l < r)
+	{
+		// Same as (l+r)/2, but avoids overflow for 
+		// large l and h 
+		int m = l + (r - l) / 2;
+
+		// Sort first and second halves 
+		mergeSort(arr,ID, l, m);
+		mergeSort(arr,ID, m + 1, r);
+
+		merge(arr,ID, l, m, r);
+	}
+}

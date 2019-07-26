@@ -97,9 +97,10 @@ void File::openFiles(vector<string>& vec_fileNames)
 				getline(fin, a);
 				b = b + "\n" + a;
 			}
-			while (search(root, k) != nullptr) k++;
+			while (search(root, k) != nullptr) k++; //why not just k++ ?
 			Insert(k, b, root);
 		}	
+		fin.close();
 	}
 	cout << 1<<endl;
 	/*
@@ -121,7 +122,7 @@ void File::openFiles(vector<string>& vec_fileNames)
 			while (!fin1.eof())
 			{
 				fin1 >> c;
-				insert_Node(c);
+				insert_Node(c,k);
 			}
 		}
 	}

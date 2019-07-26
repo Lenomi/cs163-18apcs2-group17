@@ -17,7 +17,7 @@ struct TrieNode
 {
 	TrieNode *children[ALPHABET_SIZE];
 	bool isEnd;
-	string key;
+	vector<int> file_ID;
 };
 class File
 {
@@ -38,11 +38,14 @@ public:
 	void openFiles(vector<string>& vec_fileNames);
 	void loadFileNames(vector<string>& vec_fileNames);
 	//trie
-	void insert_Node(string key);
-	bool search(const string key);
+	void insert_Node(string key,int ID);
+	vector<int> search(const string key);
 	bool isLastNode(TrieNode* root2);
 	void suggestionsRec(TrieNode * root2, string currPrefix);
 	int AutoSuggestions(string query);
 	bool find_slot(int &index, int level, string key);
+	string convert_word(string key);
+	void merge(vector<int>arr, vector<int> ID, int l, int m, int r);
+	void mergeSort(vector<int>arr, vector<int> ID, int l, int r);
 };
 
