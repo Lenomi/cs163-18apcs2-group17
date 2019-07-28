@@ -29,7 +29,7 @@ void File::insert_Node(string key, int ID)
 }
 // searching a word 
 
-bool File::search(const string key, vector<int> ID, vector<int> occu, int mode)
+bool File::search(const string key, vector<int> &ID, vector<int> &occu, int mode)
 {
 	int lenght = key.length();
 	TrieNode *pCrawl = root2;
@@ -224,7 +224,7 @@ string File::convert_word(string key) {
 	return done;
 }
 
-void File::merge(vector<int>arr,vector<int> ID, int l, int m, int r)
+void File::merge(vector<int> &arr,vector<int> &ID, int l, int m, int r)
 {
 	int i, j, k;
 	int n1 = m - l + 1;
@@ -290,7 +290,7 @@ void File::merge(vector<int>arr,vector<int> ID, int l, int m, int r)
 
 /* l is for left index and r is right index of the
    sub-array of arr to be sorted */
-void File::mergeSort(vector<int>arr, vector<int> ID, int l, int r)
+void File::mergeSort(vector<int> &arr, vector<int> &ID, int l, int r)
 {
 	if (l < r)
 	{
@@ -306,7 +306,7 @@ void File::mergeSort(vector<int>arr, vector<int> ID, int l, int r)
 	}
 }
 
-void File::ranking(string query, vector<int> ID) {
+void File::ranking(string query, vector<int> &ID) {
 	//vector<int> ID;
 	vector<int> occu;
 	int mode = 0;
