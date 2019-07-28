@@ -24,7 +24,6 @@ class File
 private:
 	Node* root;
 	TrieNode* root2;
-
 public:
 	//AVL
 	File() { root = nullptr; root2 = nullptr;}
@@ -48,6 +47,6 @@ public:
 	string convert_word(string key);
 	void merge(vector<int>arr, vector<int> ID, int l, int m, int r);
 	void mergeSort(vector<int>arr, vector<int> ID, int l, int r);
-	void ranking(vector<string>& vec_fileNames,string query, vector<int>& ID);
+	void ranking(string query, vector<int> ID);
 };
 

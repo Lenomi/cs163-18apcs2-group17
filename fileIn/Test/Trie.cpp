@@ -306,45 +306,30 @@ void File::mergeSort(vector<int>arr, vector<int> ID, int l, int r)
 	}
 }
 
-void File::ranking(vector<string>& vec_fileNames,string query, vector<int>& ID) {
+void File::ranking(string query, vector<int> ID) {
 	//vector<int> ID;
 	vector<int> occu;
 	int mode = 0;
 	// phan tich cu phap o day ....
-	if (query.find(" AND ") != string::npos) mode = 1;
-	else if (query.find(" OR ") != string::npos) mode = 2;
-	else if (query.find(" -") != string::npos) mode = 3;
-	else if (query.find("intitle:") != string::npos)
+	/*for (int i = 0; i <= query.length(); i++)
 	{
-		int pos = query.find(":"), j=0;
-		string sub = query.substr(pos + 1);
-		for (int i = 0; i < vec_fileNames.size(); i++)
+		if (query[i-1] ==' '&& query[i] == 'A' && i+1< query.length() && query[i + 1] == 'N' &&  i + 2 <= query.length() && query[i + 2] == 'D'&&(query[i+3] == ' ' || query[i+3] > query.length()))
 		{
-			if (vec_fileNames[i] == sub)
-			{
-				ID[0] = i + 1;
-				j = 1;
-			}
+			mode = 1;
+			break;
 		}
-		for (int i = 0; i < vec_fileNames.size(); i++)
+		else if (query[i - 1] == ' ' && query[i] == 'O' &&  i + 1 <= query.length() && query[i + 1] == 'R' && (query[i + 2] == ' ' || query[i+2] > query.length()))
 		{
-			if (vec_fileNames[i].find("sub") != string::npos)
-			{
-				ID[j] = i + 1;
-				j++;
-			}
-			if (j == 6) break;
+			mode = 2;
+			break;
 		}
-		return;
-	}
-	else if (query.find("filetype:txt") != string::npos)
-	{
-		for (int i = 0; i < 5; i++)
+		else if (query[i-1] == ' ' && query[i] == '-')
 		{
-			ID[i] = rand() % 11000 + 1;
+			mode = 3;
+			break;
 		}
-		return;
-	}
+	}*/
+
 	switch (mode) {
 	case(0):	//first word
 		search(query, ID, occu, 0);
