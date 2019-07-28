@@ -97,36 +97,29 @@ void File::openFiles(vector<string>& vec_fileNames)
 				getline(fin, a);
 				b = b + "\n" + a;
 			}
-			k++;
 			Insert(k, b, root);
+
+			ifstream fin1;
+			fin1.open(path.c_str());
+			if (!fin1.is_open())
+			{
+				cout << "File " << vec_fileNames[i] << " Not Found! 2 " << endl;
+			}
+			else
+			{
+				string c;
+				while (!fin1.eof())
+				{
+					fin1 >> c;
+					insert_Node(c, k);
+				}
+			}
+			fin1.close();
+			k++;
 		}	
 		fin.close();
 	}
-	cout << 1<<endl;
-	
-	for (int i = 0; i < vec_fileNames.size(); i++)
-	{
-		string fileName = vec_fileNames[i];
-		string path("database\\" + fileName);
-
-		ifstream fin1;
-		fin1.open(path.c_str());
-		if (!fin1.is_open())
-		{
-			cout << "File " << vec_fileNames[i] << " Not Found! 2 " << endl;
-		}
-		else
-		{
-			string c;
-			while (!fin1.eof())
-			{
-				fin1 >> c;
-				insert_Node(c,k);
-			}
-		}
-	}
-	cout << 2 << endl;
-
+	cout << 1 <<endl;
 }
 void File::Cout_file(int k)
 {

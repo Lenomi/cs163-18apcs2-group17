@@ -29,7 +29,7 @@ void File::insert_Node(string key, int ID)
 }
 // searching a word 
 
-bool File::search(const string key, vector<int> ID, vector<int> occu, int mode)
+bool File::search(const string key, vector<int>& ID, vector<int>& occu, int mode)
 {
 	int lenght = key.length();
 	TrieNode *pCrawl = root2;
@@ -224,7 +224,7 @@ string File::convert_word(string key) {
 	return done;
 }
 
-void File::merge(vector<int>arr,vector<int> ID, int l, int m, int r)
+void File::merge(vector<int>& arr,vector<int>& ID, int l, int m, int r)
 {
 	int i, j, k;
 	int n1 = m - l + 1;
@@ -290,7 +290,7 @@ void File::merge(vector<int>arr,vector<int> ID, int l, int m, int r)
 
 /* l is for left index and r is right index of the
    sub-array of arr to be sorted */
-void File::mergeSort(vector<int>arr, vector<int> ID, int l, int r)
+void File::mergeSort(vector<int>& arr, vector<int>& ID, int l, int r)
 {
 	if (l < r)
 	{
@@ -322,15 +322,16 @@ void File::ranking(vector<string>& vec_fileNames,string query, vector<int>& ID) 
 		{
 			if (vec_fileNames[i] == sub)
 			{
-				ID[0] = i + 1;
+				ID.push_back(i);
 				j = 1;
+				break;
 			}
 		}
 		for (int i = 0; i < vec_fileNames.size(); i++)
 		{
-			if (vec_fileNames[i].find("sub") != string::npos)
+			if (vec_fileNames[i].find(sub) != string::npos)
 			{
-				ID[j] = i + 1;
+				ID.push_back(i);
 				j++;
 			}
 			if (j == 6) break;
@@ -341,7 +342,8 @@ void File::ranking(vector<string>& vec_fileNames,string query, vector<int>& ID) 
 	{
 		for (int i = 0; i < 5; i++)
 		{
-			ID[i] = rand() % 11000 + 1;
+			int k = rand() % 11000 + 1;
+			ID.push_back(k);
 		}
 		return;
 	}
