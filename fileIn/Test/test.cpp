@@ -3,20 +3,18 @@
 int main()
 {
 	vector<string> fileNames;
+	vector<int> ID;
 	File hi;
 	hi.loadFileNames(fileNames);
 	hi.openFiles(fileNames);
 	string l;
-	hi.Cout_file(5);
-	cout << endl;
-	hi.Cout_name_file(fileNames, 5);
-	do
+	getline(cin, l);
+	hi.ranking(l, ID);
+	for (int i = 0; i < ID.size(); i++)
 	{
-		cin >> l;
-		bool file = hi.search(l);
-		if (file) cout << "yes" << endl;
-		else cout << "no" << endl;
-	} while (l != "deo");
+		hi.Cout_file(ID[i]);
+		cout << endl;
+	}
 	system("pause");
 	return 0;
 }

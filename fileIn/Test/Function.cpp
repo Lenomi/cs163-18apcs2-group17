@@ -81,8 +81,8 @@ void File::openFiles(vector<string>& vec_fileNames)
 	for (int i = 0; i < vec_fileNames.size(); i++)
 	{
 		string fileName = vec_fileNames[i];
-	//	string path("database\\" + fileName );
-		string path("test\\" + fileName);
+		string path("database\\" + fileName );
+	//	string path("test\\" + fileName);
 		ifstream fin;
 		fin.open(path.c_str());
 		if (!fin.is_open())
@@ -97,17 +97,17 @@ void File::openFiles(vector<string>& vec_fileNames)
 				getline(fin, a);
 				b = b + "\n" + a;
 			}
-			while (search(root, k) != nullptr) k++; //why not just k++ ?
+			k++;
 			Insert(k, b, root);
 		}	
 		fin.close();
 	}
 	cout << 1<<endl;
-	/*
+	
 	for (int i = 0; i < vec_fileNames.size(); i++)
 	{
 		string fileName = vec_fileNames[i];
-		string path("test - Copy\\" + fileName);
+		string path("database\\" + fileName);
 
 		ifstream fin1;
 		fin1.open(path.c_str());
@@ -118,7 +118,6 @@ void File::openFiles(vector<string>& vec_fileNames)
 		else
 		{
 			string c;
-			cout << vec_fileNames[i] << endl;
 			while (!fin1.eof())
 			{
 				fin1 >> c;
@@ -126,7 +125,7 @@ void File::openFiles(vector<string>& vec_fileNames)
 			}
 		}
 	}
-	cout << 2 << endl;*/
+	cout << 2 << endl;
 
 }
 void File::Cout_file(int k)
@@ -139,8 +138,8 @@ void File::Cout_name_file(vector<string>& vec_fileNames, int k)
 }
 void File::loadFileNames(vector<string>& vec_fileNames)
 {
-	//ifstream inFile("dataName.txt");
-		ifstream inFile("___index.txt");
+	ifstream inFile("dataName.txt");
+	//ifstream inFile("___index.txt");
 
 	if (!inFile.is_open())
 

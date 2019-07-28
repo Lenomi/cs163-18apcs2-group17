@@ -43,9 +43,12 @@ bool File::search(const string key, vector<int> ID, vector<int> occu, int mode)
 		}
 	}
 	if (pCrawl != nullptr && pCrawl->isEnd) {
+		int vec_size;
+		int ID_size;
+		int ID_loca;
 		switch (mode) {
 		case(0):	//first word
-			int vec_size = pCrawl->file_ID.size();
+			vec_size = pCrawl->file_ID.size();
 			for (int i = 0; i < vec_size; i++) {
 				if (ID.empty() || ID.back() != pCrawl->file_ID[i]) {
 					ID.push_back(pCrawl->file_ID[i]);
@@ -60,11 +63,11 @@ bool File::search(const string key, vector<int> ID, vector<int> occu, int mode)
 				return false;
 			break;
 		case(1):	//AND
-			int vec_size = pCrawl->file_ID.size();
-			int ID_size = ID.size();
+			vec_size = pCrawl->file_ID.size();
+			ID_size = ID.size();
 			if (ID_size == 0)
 				return false;
-			int ID_loca = 0;
+			ID_loca = 0;
 			for (int vec_loca = 0; vec_loca < vec_size; vec_loca++) {
 				for (int j = ID_loca; j < ID_size; j++) {
 					if (pCrawl->file_ID[vec_loca] == ID[j]) {
@@ -76,9 +79,9 @@ bool File::search(const string key, vector<int> ID, vector<int> occu, int mode)
 			}
 			break;
 		case(2):	//OR
-			int vec_size = pCrawl->file_ID.size();
-			int ID_size = ID.size();
-			int ID_loca = 0;
+			vec_size = pCrawl->file_ID.size();
+			ID_size = ID.size();
+			ID_loca = 0;
 			for (int vec_loca = 0; vec_loca < vec_size; vec_loca++) {
 				while (ID_loca < ID_size) {
 					if (pCrawl->file_ID[vec_loca] == ID[ID_loca]) {
@@ -102,11 +105,11 @@ bool File::search(const string key, vector<int> ID, vector<int> occu, int mode)
 			}
 			break;
 		case(3):	//Dau -
-			int vec_size = pCrawl->file_ID.size();
-			int ID_size = ID.size();
+			vec_size = pCrawl->file_ID.size();
+			ID_size = ID.size();
 			if (ID_size == 0)
 				return true;
-			int ID_loca = 0;
+			ID_loca = 0;
 			for (int vec_loca = 0; vec_loca < vec_size; vec_loca++) {
 				if (vec_loca > 0 && pCrawl->file_ID[vec_loca] == pCrawl->file_ID[vec_loca - 1]) {
 					continue;
@@ -210,7 +213,7 @@ bool File::find_slot(int &index, int level, string key) {
 }
 
 string File::convert_word(string key) {
-	int leng = key.length;
+	int leng = key.length();
 	string done;
 	int index;
 	for (int i = 0; i < leng; i++) {
@@ -303,11 +306,29 @@ void File::mergeSort(vector<int>arr, vector<int> ID, int l, int r)
 	}
 }
 
-void File::ranking(string query) {
-	vector<int> ID;
+void File::ranking(string query, vector<int> ID) {
+	//vector<int> ID;
 	vector<int> occu;
-	int mode;
+	int mode = 0;
 	// phan tich cu phap o day ....
+	/*for (int i = 0; i <= query.length(); i++)
+	{
+		if (query[i-1] ==' '&& query[i] == 'A' && i+1< query.length() && query[i + 1] == 'N' &&  i + 2 <= query.length() && query[i + 2] == 'D'&&(query[i+3] == ' ' || query[i+3] > query.length()))
+		{
+			mode = 1;
+			break;
+		}
+		else if (query[i - 1] == ' ' && query[i] == 'O' &&  i + 1 <= query.length() && query[i + 1] == 'R' && (query[i + 2] == ' ' || query[i+2] > query.length()))
+		{
+			mode = 2;
+			break;
+		}
+		else if (query[i-1] == ' ' && query[i] == '-')
+		{
+			mode = 3;
+			break;
+		}
+	}*/
 
 	switch (mode) {
 	case(0):	//first word
@@ -319,7 +340,9 @@ void File::ranking(string query) {
 	case(2):	//OR
 		search(query, ID, occu, 2);
 		break;
-
+	case(3):	//dau -
+		search(query, ID, occu, 3);
+		break;
 
 
 
