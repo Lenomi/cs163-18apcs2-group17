@@ -9,9 +9,10 @@ int main()
 	hi.openFiles(fileNames);
 	string l;
 	getline(cin, l);
-	hi.ranking(l, ID);
-	for (int i = 0; i < ID.size(); i++)
+	hi.ranking(fileNames, l, ID);
+	for (int i = 0; i < 5; i++)
 	{
+		hi.Cout_name_file(fileNames, ID[i]);
 		hi.Cout_file(ID[i]);
 		cout << endl;
 	}
