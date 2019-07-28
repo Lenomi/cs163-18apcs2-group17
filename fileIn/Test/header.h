@@ -39,7 +39,7 @@ public:
 	void loadFileNames(vector<string>& vec_fileNames);
 	//trie
 	void insert_Node(string key,int ID);
-	vector<int> search(const string key);
+	bool search(const string key, vector<int> ID, vector<int> occu, int mode);
 	bool isLastNode(TrieNode* root2);
 	void suggestionsRec(TrieNode * root2, string currPrefix);
 	int AutoSuggestions(string query);
@@ -47,5 +47,6 @@ public:
 	string convert_word(string key);
 	void merge(vector<int>arr, vector<int> ID, int l, int m, int r);
 	void mergeSort(vector<int>arr, vector<int> ID, int l, int r);
+	void ranking(string query);
 };
 
