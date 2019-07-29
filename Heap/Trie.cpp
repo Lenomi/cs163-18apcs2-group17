@@ -27,7 +27,6 @@ void File::insert_Node(string key, int ID)
 	pCrawl->isEnd = true;
 	pCrawl->file_ID.push_back(ID);
 }
-
 // searching a word 
 
 bool File::search(const string key, vector<int>& ID, vector<int>& occu, int mode)
@@ -323,24 +322,8 @@ void File::heapSort(vector<int> &occu,vector<int> &ID, int n)
 	}
 }
 
-void File::ranking(vector<string>& vec_fileNames, string query1, vector<int>& ID) {
-	string l = query1;
-	vector<string> query;
-	string word = "";
-	for (auto x : l)
-	{
-		if (x == ' ')
-		{
-			query.push_back(word);
-			word = "";
-		}
-		else
-		{
-			word = word + x;
-		}
-	}
-	query.push_back(word);
-
+void File::ranking(vector<string>& vec_fileNames, vector<string> &query, vector<int>& ID) {
+	//vector<int> ID;
 	vector<int> occu;
 	int mode = 0;
 	int query_size = query.size(), a = 0;
@@ -349,73 +332,6 @@ void File::ranking(vector<string>& vec_fileNames, string query1, vector<int>& ID
 		searched[i] = false;
 	}
 	// phan tich cu phap o day ....
-
-	// synosysms
-	for (int i = 0; i < query_size; i++)
-	{
-		if (query[i][0] == '~')
-		{
-			query[i].erase(0,1);
-			string z;
-			string word1 = "";
-			if (search_synonyms(query[i], z))
-			{
-				query[i].erase(0);
-				query.pop_back();
-				for (auto x : z)
-				{
-					if (x == ' ')
-					{
-						query.push_back(word1);
-						word1 = "";
-					}
-					else
-					{
-						word1 = word1 + x;
-					}
-				}
-				query.push_back(word1);
-				query_size = query.size(), a = 0;
-				searched = new bool[query_size];
-				for (int i = 0; i < query_size; i++) {
-					searched[i] = false;
-				}
-			}
-
-		}
-	}
-
-	/*for (int i = 0; i < query_size; i++) // &200..$400
-	{
-		if (query[i] == "..")
-		{
-			a++;
-			int pos = std::string::npos;
-			while ((pos = query[i].find("&")) != std::string::npos)
-			{
-				query[i].erase(pos,1);
-			}
-			int pos1 = query[i].find("..");
-			string sub = query[i].substr(0,pos1-1);
-			string sub1 = query[i].substr(pos1+2);
-			int l = std::stoi(sub);
-			int r = std::stoi(sub1);
-			// day no se chay tu 200 toi 400 de xem cai nao co
-			for (int i = l; l <= r; l++)
-			{
-				string b = to_string(i);
-				string a="&";
-				a += b;
-				search(a, ID, occu, 2); // Tai khuc nay lam cho no search theo kieu OR di
-			}
-			
-		}
-	}
-	// The * in the world
-	// phan nay t can m t se chi tung buoc
-
-
-	*/
 	for (int i = 0; i < query_size; i++)
 	{
 		if (query[i].find("intitle:") != string::npos)
