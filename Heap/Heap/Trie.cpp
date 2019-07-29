@@ -350,169 +350,190 @@ void File::ranking(vector<string>& vec_fileNames, string query1, vector<int>& ID
 	}
 	// phan tich cu phap o day ....
 
-	// synosysms
-	for (int i = 0; i < query_size; i++)
-	{
-		if (query[i][0] == '~')
-		{
-			query[i].erase(0,1);
-			string z;
-			string word1 = "";
-			if (search_synonyms(query[i], z))
-			{
-				query[i].erase(0);
-				query.pop_back();
-				for (auto x : z)
-				{
-					if (x == ' ')
-					{
-						query.push_back(word1);
-						word1 = "";
-					}
-					else
-					{
-						word1 = word1 + x;
-					}
-				}
-				query.push_back(word1);
-				query_size = query.size(), a = 0;
-				searched = new bool[query_size];
-				for (int i = 0; i < query_size; i++) {
-					searched[i] = false;
-				}
-			}
-
-		}
-	}
-
-	/*for (int i = 0; i < query_size; i++) // &200..$400
-	{
-		if (query[i] == "..")
-		{
-			a++;
-			int pos = std::string::npos;
-			while ((pos = query[i].find("&")) != std::string::npos)
-			{
-				query[i].erase(pos,1);
-			}
-			int pos1 = query[i].find("..");
-			string sub = query[i].substr(0,pos1-1);
-			string sub1 = query[i].substr(pos1+2);
-			int l = std::stoi(sub);
-			int r = std::stoi(sub1);
-			// day no se chay tu 200 toi 400 de xem cai nao co
-			for (int i = l; l <= r; l++)
-			{
-				string b = to_string(i);
-				string a="&";
-				a += b;
-				search(a, ID, occu, 2); // Tai khuc nay lam cho no search theo kieu OR di
-			}
-			
-		}
-	}
 	// The * in the world
 	// phan nay t can m t se chi tung buoc
-
-
-	*/
-	for (int i = 0; i < query_size; i++)
-	{
-		if (query[i].find("intitle:") != string::npos)
-		{
-			int pos = query[i].find(":"), j = 0, l=-1;
-			string sub = query[i].substr(pos + 1);
-			for (int i = 0; i < vec_fileNames.size(); i++)
-			{
-				if (vec_fileNames[i] == sub)
-				{
-					ID.push_back(i+1);
-					occu.push_back(50);
-					l = i; //can use bool but whatever
-					j = 1;
-					break;
-				}
+	for (int i = 0; i < query_size; i++) {
+		if (query[i] == "*") {
+			a++;
+		}
+	}
+	if (a)
+		for (int i = 0; i < query_size; i++) {
+			if (query[i] != "*") {
+				searched[i] = true;
+				if (ID.empty())
+					search(query[i], ID, occu, 2);
+				else
+					search(query[i], ID, occu, 1);
 			}
-			for (int i = 0; i < vec_fileNames.size(); i++)
+		}
+	else {
+
+		// synosysms
+		for (int i = 0; i < query_size; i++)
+		{
+			if (query[i][0] == '~')
 			{
-				if (vec_fileNames[i].find(sub) != string::npos)
+				query[i].erase(0, 1);
+				string z;
+				string word1 = "";
+				if (search_synonyms(query[i], z))
 				{
-					if (i != l) {
+					query[i].erase(0);
+					query.pop_back();
+					for (auto x : z)
+					{
+						if (x == ' ')
+						{
+							query.push_back(word1);
+							word1 = "";
+						}
+						else
+						{
+							word1 = word1 + x;
+						}
+					}
+					query.push_back(word1);
+					query_size = query.size(), a = 0;
+					searched = new bool[query_size];
+					for (int i = 0; i < query_size; i++) {
+						searched[i] = false;
+					}
+				}
+
+			}
+		}
+		for (int i = 0; i < query_size; i++) // $200..$400
+		{
+			if (query[i].find("..")!=string::npos)
+			{
+				a++;
+				int pos = string::npos;
+				bool found = false;
+				while ((pos = query[i].find("$")) != string::npos)
+				{
+					query[i].erase(pos, 1);
+					found = true;
+				}
+				int pos1 = query[i].find("..");
+				string sub = query[i].substr(0, pos1);
+				string sub1 = query[i].substr(pos1 + 2);
+				int l = stoi(sub);
+				int r = stoi(sub1);
+				// day no se chay tu 200 toi 400 de xem cai nao co
+				for (int i = l; l <= r; l++)
+				{
+					string b = to_string(i);
+					if (found) {
+						string a = "$";
+						a += b;
+						search(a, ID, occu, 2);
+					}
+					else
+						search(b, ID, occu, 2);// Tai khuc nay lam cho no search theo kieu OR di
+				}
+
+			}
+		}
+
+
+		for (int i = 0; i < query_size; i++)
+		{
+			if (query[i].find("intitle:") != string::npos)
+			{
+				int pos = query[i].find(":"), j = 0, l = -1;
+				string sub = query[i].substr(pos + 1);
+				for (int i = 0; i < vec_fileNames.size(); i++)
+				{
+					if (vec_fileNames[i] == sub)
+					{
 						ID.push_back(i + 1);
 						occu.push_back(50);
+						l = i; //can use bool but whatever
+						j = 1;
+						break;
 					}
-					j++;
 				}
-				if (j == 6) break;
+				for (int i = 0; i < vec_fileNames.size(); i++)
+				{
+					if (vec_fileNames[i].find(sub) != string::npos)
+					{
+						if (i != l) {
+							ID.push_back(i + 1);
+							occu.push_back(50);
+						}
+						j++;
+					}
+					if (j == 6) break;
+				}
+				searched[i] = true;
 			}
-			searched[i] = true;
-		}
-		else if (query[i].find("filetype:txt") != string::npos)
-		{
-			for (int i = 0; i < 5; i++)
+			else if (query[i].find("filetype:txt") != string::npos)
 			{
-				int k = rand() % 75 + 1; //change this
-				ID.push_back(k);
-				occu.push_back(1);
-			}
-			searched[i] = true;
-		}
-	}
-	for (int i = 0; i < query_size; i++) {
-		if (query[i] == "OR") {
-			a++;
-			searched[i] = true;
-			if (!searched[i - 1] && query[i-1][0] != '-') {
-				search(query[i-1], ID, occu, 2);
-				searched[i - 1] = true;
-			}
-			if (!searched[i + 1] && query[i+1][0] != '-') {
-				search(query[i+1], ID, occu, 2);
-				searched[i + 1] = true;
+				for (int i = 0; i < 5; i++)
+				{
+					int k = rand() % 75 + 1; //change this
+					ID.push_back(k);
+					occu.push_back(1);
+				}
+				searched[i] = true;
 			}
 		}
-	}
-	for (int i = 0; i < query_size; i++) {
-		if (query[i] == "AND" || query[i] == "+") {
-			a++;
-			searched[i] = true;
-			if (!searched[i - 1] && !searched[i + 1]) {
-				search(query[i - 1], ID, occu, 2);
-				searched[i - 1] = true;
-				search(query[i + 1], ID, occu, 1);
-				searched[i + 1] = true;
-			}
-			else if (!searched[i - 1] || !searched[i + 1]) {
-				if (!searched[i - 1]) {
-					search(query[i - 1], ID, occu, 1);
+		for (int i = 0; i < query_size; i++) {
+			if (query[i] == "OR") {
+				a++;
+				searched[i] = true;
+				if (!searched[i - 1] && query[i - 1][0] != '-') {
+					search(query[i - 1], ID, occu, 2);
 					searched[i - 1] = true;
 				}
-				if (!searched[i + 1]) {
-					search(query[i + 1], ID, occu, 1);
+				if (!searched[i + 1] && query[i + 1][0] != '-') {
+					search(query[i + 1], ID, occu, 2);
 					searched[i + 1] = true;
 				}
 			}
 		}
-	}
-	for (int i = 0; i < query_size; i++) {
-		if (!searched[i] && query[i][0] != '-') {
-			if (!a) {
-				query[i] = AutoSuggestions(query[i]);
+		for (int i = 0; i < query_size; i++) {
+			if (query[i] == "AND" || query[i] == "+") {
+				a++;
+				searched[i] = true;
+				if (!searched[i - 1] && !searched[i + 1]) {
+					search(query[i - 1], ID, occu, 2);
+					searched[i - 1] = true;
+					search(query[i + 1], ID, occu, 1);
+					searched[i + 1] = true;
+				}
+				else if (!searched[i - 1] || !searched[i + 1]) {
+					if (!searched[i - 1]) {
+						search(query[i - 1], ID, occu, 1);
+						searched[i - 1] = true;
+					}
+					if (!searched[i + 1]) {
+						search(query[i + 1], ID, occu, 1);
+						searched[i + 1] = true;
+					}
+				}
 			}
-			searched[i] = true;
-			search(query[i], ID, occu, 2);
 		}
-	}
-	for (int i = 0; i < query_size; i++) {
-		if (query[i][0] == '-') {
-			a++;
-			searched[i] = true;
-			search(query[i], ID, occu, 3);
+		for (int i = 0; i < query_size; i++) {
+			if (!searched[i] && query[i][0] != '-') {
+				if (!a) {
+					query[i] = AutoSuggestions(query[i]);
+				}
+				searched[i] = true;
+				search(query[i], ID, occu, 2);
+			}
+		}
+		for (int i = 0; i < query_size; i++) {
+			if (query[i][0] == '-') {
+				searched[i] = true;
+				search(query[i], ID, occu, 3);
+			}
 		}
 	}
 
 	int arr_size = ID.size();// sap xep sau khi da tim xong
-	heapSort(occu, ID,arr_size); //heap sort cho nhanh
+	heapSort(occu, ID,arr_size); //heap sort cho nhanh PROBLEM heap sort xep tang dan
 
 
 
