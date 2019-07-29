@@ -1,5 +1,6 @@
 #include "header.h"
 
+
 void File::Insert(int k, string a, Node*& root)
 {
 	if (root == nullptr)
@@ -82,7 +83,7 @@ void File::openFiles(vector<string>& vec_fileNames)
 	{
 		string fileName = vec_fileNames[i];
 		string path("database\\" + fileName );
-		//string path("test\\" + fileName);
+	//	string path("test\\" + fileName);
 		ifstream fin;
 		fin.open(path.c_str());
 		if (!fin.is_open())

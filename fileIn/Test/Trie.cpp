@@ -46,8 +46,10 @@ bool File::search(const string key, vector<int>& ID, vector<int>& occu, int mode
 		int vec_size;
 		int ID_size;
 		int ID_loca;
+		bool found;
 		switch (mode) {
 		case(1):	//AND
+			found = false;
 			vec_size = pCrawl->file_ID.size();
 			ID_size = ID.size();
 			if (ID_size == 0)
@@ -58,9 +60,14 @@ bool File::search(const string key, vector<int>& ID, vector<int>& occu, int mode
 					if (pCrawl->file_ID[vec_loca] == ID[j]) {
 						occu[j]++;
 						ID_loca = j;
+						found = true;
 						break;
 					}
 				}
+			}
+			if (!found) {
+				ID.clear();
+				occu.clear();
 			}
 			break;
 		case(2):	//OR
@@ -194,6 +201,10 @@ bool File::find_slot(int &index, int level, string key) {
 		index = key[level] - 22;
 		return true;
 	}
+	else if (key[level] == 35 || key[level] == 36) {
+		index = key[level] + 2;
+		return true;
+	}
 	return false;
 }
 
@@ -209,89 +220,56 @@ string File::convert_word(string key) {
 	return done;
 }
 
-void File::merge(vector<int>& arr,vector<int>& ID, int l, int m, int r)
+
+// To heapify a subtree rooted with node i which is 
+// an index in arr[]. n is size of heap 
+void File::heapify(vector<int> &occu, vector<int> &ID, int n, int i)
 {
-	int i, j, k;
-	int n1 = m - l + 1;
-	int n2 = r - m;
+	int largest = i; // Initialize largest as root 
+	int l = 2 * i + 1; // left = 2*i + 1 
+	int r = 2 * i + 2; // right = 2*i + 2 
 
-	/* create temp arrays */
-	int* L = new int[n1];
-	int* L_ID = new int[n1];
-	int* R = new int[n2];
-	int* R_ID = new int[n2];
-
-	/* Copy data to temp arrays L[] and R[] */
-	for (i = 0; i < n1; i++) {
-		L[i] = arr[l + i];
-		L_ID[i] = ID[l + i];
-	}
-	for (j = 0; j < n2; j++) {
-		R[j] = arr[m + 1 + j];
-		R_ID[j] = ID[m + 1 + j];
+	// If left child is larger than root 
+	if (l < n && occu[l] > occu[largest]) {
+		largest = l;
 	}
 
-	/* Merge the temp arrays back into arr[l..r]*/
-	i = 0; // Initial index of first subarray 
-	j = 0; // Initial index of second subarray 
-	k = l; // Initial index of merged subarray 
-	while (i < n1 && j < n2)
+	// If right child is larger than largest so far 
+	if (r < n && occu[r] > occu[largest]) {
+		largest = r;
+	}
+
+	// If largest is not root 
+	if (largest != i)
 	{
-		if (L[i] >= R[j])
-		{
-			arr[k] = L[i];
-			ID[k] = L_ID[i];
-			i++;
-		}
-		else
-		{
-			arr[k] = R[j];
-			ID[k] = R_ID[i];
-			j++;
-		}
-		k++;
-	}
+		swap(occu[i], occu[largest]);
+		swap(ID[i], ID[largest]);
 
-	/* Copy the remaining elements of L[], if there
-	   are any */
-	while (i < n1)
-	{
-		arr[k] = L[i];
-		ID[k] = L_ID[i];
-		i++;
-		k++;
-	}
-
-	/* Copy the remaining elements of R[], if there
-	   are any */
-	while (j < n2)
-	{
-		arr[k] = R[j];
-		ID[k] = R_ID[j];
-		j++;
-		k++;
+		// Recursively heapify the affected sub-tree 
+		heapify(occu, ID,n, largest);
 	}
 }
 
-/* l is for left index and r is right index of the
-   sub-array of arr to be sorted */
-void File::mergeSort(vector<int>& arr, vector<int>& ID, int l, int r)
+// main function to do heap sort 
+void File::heapSort(vector<int> &occu,vector<int> &ID, int n)
 {
-	if (l < r)
+	// Build heap (reoccuange occuay) 
+	for (int i = n / 2 - 1; i >= 0; i--)
+		heapify(occu,ID, n, i);
+
+	// One by one extract an element from heap 
+	for (int i = n - 1; i >= 0; i--)
 	{
-		// Same as (l+r)/2, but avoids overflow for 
-		// large l and h 
-		int m = l + (r - l) / 2;
+		// Move current root to end 
+		swap(occu[0], occu[i]);
+		swap(ID[0], ID[i]);
 
-		// Sort first and second halves 
-		mergeSort(arr,ID, l, m);
-		mergeSort(arr,ID, m + 1, r);
-
-		merge(arr,ID, l, m, r);
+		// call max heapify on the reduced heap 
+		heapify(occu,ID, i, 0);
 	}
 }
 
-void File::ranking(vector<string>& vec_fileNames,vector<string> query, vector<int>& ID) {
+void File::ranking(vector<string>& vec_fileNames,vector<string> &query, vector<int>& ID) {
 	//vector<int> ID;
 	vector<int> occu;
 	int mode = 0;
@@ -332,7 +310,6 @@ void File::ranking(vector<string>& vec_fileNames,vector<string> query, vector<in
 		}
 		return;
 	}*/
-	string key;
 	int query_size = query.size();
 	bool *searched = new bool[query_size];
 	for (int i = 0; i < query_size; i++) {
@@ -342,11 +319,11 @@ void File::ranking(vector<string>& vec_fileNames,vector<string> query, vector<in
 		if (query[i] == "OR") {
 			searched[i] = true;
 			if (!searched[i - 1]) {
-				search(key, ID, occu, 2);
+				search(query[i-1], ID, occu, 2);
 				searched[i - 1] = true;
 			}
 			if (!searched[i + 1]) {
-				search(key, ID, occu, 2);
+				search(query[i+1], ID, occu, 2);
 				searched[i + 1] = true;
 			}
 		}
@@ -354,14 +331,24 @@ void File::ranking(vector<string>& vec_fileNames,vector<string> query, vector<in
 	for (int i = 0; i < query_size; i++) {
 		if (query[i] == "AND") {
 			searched[i] = true;
-			if (!searched[i - 1]) {
-				search(key, ID, occu, 1);
+			if (ID.empty()) {
+				search(query[i - 1], ID, occu, 2);
+				searched[i - 1] = true;
+			}
+			else if (!searched[i - 1]) {
+				search(query[i-1], ID, occu, 1);
 				searched[i - 1] = true;
 			}
 			if (!searched[i + 1]) {
-				search(key, ID, occu, 1);
+				search(query[i+1], ID, occu, 1);
 				searched[i + 1] = true;
 			}
+		}
+	}
+	for (int i = 0; i < query_size; i++) {
+		if (!searched[i]) {
+			searched[i] = true;
+			search(query[i], ID, occu, 2);
 		}
 	}
 
@@ -370,27 +357,28 @@ void File::ranking(vector<string>& vec_fileNames,vector<string> query, vector<in
 
 
 
-	switch (mode) {
-	case(0):	//first word
-		search(key, ID, occu, 0);
-		break;
-	case(1):	//AND
-		search(key, ID, occu,1);
-		break;
-	case(2):	//OR
-		search(key, ID, occu, 2);
-		break;
-	case(3):	//dau -
-		search(key, ID, occu, 3);
-		break;
+	//switch (mode) {
+	//case(0):	//first word
+	//	search(key, ID, occu, 0);
+	//	break;
+	//case(1):	//AND
+	//	search(key, ID, occu,1);
+	//	break;
+	//case(2):	//OR
+	//	search(key, ID, occu, 2);
+	//	break;
+	//case(3):	//dau -
+	//	search(key, ID, occu, 3);
+	//	break;
 
 
 
-	}
+	//}
 
 	int arr_size = ID.size();// sap xep sau khi da tim xong
-	mergeSort(occu, ID, 0, arr_size - 1);
+	heapSort(occu, ID,arr_size);
 
 
-	
+
+
 }

@@ -1,11 +1,11 @@
 #include<iostream>
+#include < conio.h>
 #include<fstream>
 #include<string>
 #include<vector>
 #include<queue>
 #include<cctype>
-#include<conio.h>
-const int ALPHABET_SIZE = 36;
+const int ALPHABET_SIZE = 38;
 
 using namespace std;
 struct Node
@@ -47,8 +47,8 @@ public:
 	int AutoSuggestions(string query);
 	bool find_slot(int &index, int level, string key);
 	string convert_word(string key);
-	void merge(vector<int>&arr, vector<int>& ID, int l, int m, int r);
-	void mergeSort(vector<int>&arr, vector<int>& ID, int l, int r);
-	void ranking(vector<string>& vec_fileNames, vector<string> query, vector<int>& ID);
+	void ranking(vector<string>& vec_fileNames, vector<string>& query, vector<int>& ID);
+	void heapSort(vector<int> &occu, vector<int> &ID, int n);
+	void heapify(vector<int> &occu, vector<int> &ID, int n, int i);
 };
 
