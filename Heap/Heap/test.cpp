@@ -34,7 +34,7 @@ int main()
 		for (int i = 0; i < 5 && i<ID.size(); i++)
 		{
 			hi.Cout_name_file(fileNames, ID[i]);
-			hi.Cout_file(ID[i]);
+			//hi.Cout_file(ID[i]);
 			cout << endl;
 		}
 		system("pause");

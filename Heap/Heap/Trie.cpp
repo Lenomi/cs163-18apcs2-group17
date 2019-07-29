@@ -108,8 +108,8 @@ bool File::search(const string key, vector<int>& ID, vector<int>& occu, int mode
 				}
 				for (int j = ID_loca; j < ID_size; j++) {
 					if (pCrawl->file_ID[vec_loca] == ID[j]) {
-						ID.erase(begin(ID)+j);
-						occu.erase(begin(ID)+j);
+						ID.erase(ID.begin()+j);
+						occu.erase(occu.begin()+j);
 						ID_loca = j;
 						ID_size--;
 						break;
@@ -134,28 +134,33 @@ bool File::isLastNode(TrieNode* root2)
 	return 1;
 }
 
-void File::suggestionsRec(TrieNode * root2,string currPrefix) {
+bool File::suggestionsRec(TrieNode * root2,string currPrefix,string &ans) {
 	if (root2->isEnd)
 	{
 		cout << currPrefix << endl;
 		cout << endl;
+		ans = currPrefix;
+		return true;
 	}
 	if (isLastNode(root2))
 	{
-		return;
+		ans = currPrefix;
+		return true;
 	}
 	for (int i = 0; i < ALPHABET_SIZE; i++)
 	{
 		if (root2->children[i])
 		{
 			currPrefix.push_back(97 + i);
-			suggestionsRec(root2->children[i], currPrefix);
+			if(suggestionsRec(root2->children[i], currPrefix,ans)) return true;
 		}
 	}
+	return false;
 }
 
-int File::AutoSuggestions(string query)
+string File::AutoSuggestions(string query)
 {
+
 	TrieNode *pCrawl = root2;
 	int lenght = query.length();
 	for (int level = 0; level < lenght; level++)
@@ -163,26 +168,29 @@ int File::AutoSuggestions(string query)
 		int index;
 		if (find_slot(index, level, query) && !pCrawl->children[index])//problem ?
 		{
-			return 0;
+			return query;
 		}
 		pCrawl = pCrawl->children[index];
 	}
 
 
 
-	bool isWord = (pCrawl->isEnd == true);
+	bool isWord = pCrawl->isEnd;
 	bool isEnd = isLastNode(pCrawl);
 
+	if (isWord) {
+		return query;
+	}
 	if (isWord && isEnd)
 	{
 		cout << query << endl;
-		return -1;
+		return query;
 	}
 	if (!isEnd)
 	{
-
-		suggestionsRec(pCrawl, query);
-		return 1;
+		string ans;
+		if (suggestionsRec(pCrawl, query,ans))
+			return ans;
 	}
 
 
@@ -269,60 +277,63 @@ void File::heapSort(vector<int> &occu,vector<int> &ID, int n)
 	}
 }
 
-void File::ranking(vector<string>& vec_fileNames,vector<string> &query, vector<int>& ID) {
+void File::ranking(vector<string>& vec_fileNames, vector<string> &query, vector<int>& ID) {
 	//vector<int> ID;
 	vector<int> occu;
 	int mode = 0;
-	// phan tich cu phap o day ....
-	/*if (query.find(" AND ") != string::npos) mode = 1;
-	else if (query.find(" OR ") != string::npos) mode = 2;
-	else if (query.find(" -") != string::npos) mode = 3;
-	else if (query.find("intitle:") != string::npos)
-	{
-		int pos = query.find(":"), j=0;
-		string sub = query.substr(pos + 1);
-		for (int i = 0; i < vec_fileNames.size(); i++)
-		{
-			if (vec_fileNames[i] == sub)
-			{
-				ID.push_back(i);
-				j = 1;
-				break;
-			}
-		}
-		for (int i = 0; i < vec_fileNames.size(); i++)
-		{
-			if (vec_fileNames[i].find(sub) != string::npos)
-			{
-				ID.push_back(i);
-				j++;
-			}
-			if (j == 6) break;
-		}
-		return;
-	}
-	else if (query.find("filetype:txt") != string::npos)
-	{
-		for (int i = 0; i < 5; i++)
-		{
-			int k = rand() % 11000 + 1;
-			ID.push_back(k);
-		}
-		return;
-	}*/
-	int query_size = query.size();
+	int query_size = query.size(), a = 0;
 	bool *searched = new bool[query_size];
 	for (int i = 0; i < query_size; i++) {
 		searched[i] = false;
 	}
+	// phan tich cu phap o day ....
+	for (int i = 0; i < query_size; i++)
+	{
+		if (query[i].find("intitle:") != string::npos)
+		{
+			int pos = query[i].find(":"), j = 0, l=-1;
+			string sub = query[i].substr(pos + 1);
+			for (int i = 0; i < vec_fileNames.size(); i++)
+			{
+				if (vec_fileNames[i] == sub)
+				{
+					ID.push_back(i+1);
+					l = i;
+					j = 1;
+					break;
+				}
+			}
+			for (int i = 0; i < vec_fileNames.size(); i++)
+			{
+				if (vec_fileNames[i].find(sub) != string::npos)
+				{
+					if(i!=l) ID.push_back(i + 1);
+					j++;
+				}
+				if (j == 6) break;
+			}
+			return;
+		}
+
+		else if (query[i].find("filetype:txt") != string::npos)
+		{
+			for (int i = 0; i < 5; i++)
+			{
+				int k = rand() % 75 + 1;
+				ID.push_back(k);
+			}
+			return;
+		}
+	}
 	for (int i = 0; i < query_size; i++) {
 		if (query[i] == "OR") {
+			a++;
 			searched[i] = true;
-			if (!searched[i - 1]) {
+			if (!searched[i - 1] && query[i-1][0] != '-') {
 				search(query[i-1], ID, occu, 2);
 				searched[i - 1] = true;
 			}
-			if (!searched[i + 1]) {
+			if (!searched[i + 1] && query[i+1][0] != '-') {
 				search(query[i+1], ID, occu, 2);
 				searched[i + 1] = true;
 			}
@@ -330,25 +341,40 @@ void File::ranking(vector<string>& vec_fileNames,vector<string> &query, vector<i
 	}
 	for (int i = 0; i < query_size; i++) {
 		if (query[i] == "AND") {
+			a++;
 			searched[i] = true;
-			if (ID.empty()) {
+			if (ID.empty() && query[i-1][0] != '-') {
 				search(query[i - 1], ID, occu, 2);
 				searched[i - 1] = true;
 			}
-			else if (!searched[i - 1]) {
+			else if (!searched[i - 1] && query[i-1][0] != '-') {
 				search(query[i-1], ID, occu, 1);
 				searched[i - 1] = true;
 			}
-			if (!searched[i + 1]) {
+			if (ID.empty() && query[i + 1][0] != '-') {
+				search(query[i + 1], ID, occu, 2);
+				searched[i + 1] = true;
+			}
+			else if (!searched[i + 1] && query[i+1][0] != '-') {
 				search(query[i+1], ID, occu, 1);
 				searched[i + 1] = true;
 			}
 		}
 	}
 	for (int i = 0; i < query_size; i++) {
-		if (!searched[i]) {
+		if (!searched[i] && query[i][0] != '-') {
+			if (!a) {
+				query[i] = AutoSuggestions(query[i]);
+			}
 			searched[i] = true;
 			search(query[i], ID, occu, 2);
+		}
+	}
+	for (int i = 0; i < query_size; i++) {
+		if (query[i][0] == '-') {
+			a++;
+			searched[i] = true;
+			search(query[i], ID, occu, 3);
 		}
 	}
 
