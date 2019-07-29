@@ -47,21 +47,6 @@ bool File::search(const string key, vector<int>& ID, vector<int>& occu, int mode
 		int ID_size;
 		int ID_loca;
 		switch (mode) {
-		case(0):	//first word
-			vec_size = pCrawl->file_ID.size();
-			for (int i = 0; i < vec_size; i++) {
-				if (ID.empty() || ID.back() != pCrawl->file_ID[i]) {
-					ID.push_back(pCrawl->file_ID[i]);
-					occu.push_back(1);
-				}
-				else
-				{
-					occu.back() += 1;
-				}
-			}
-			if (ID.size() == 0)
-				return false;
-			break;
 		case(1):	//AND
 			vec_size = pCrawl->file_ID.size();
 			ID_size = ID.size();
@@ -306,12 +291,12 @@ void File::mergeSort(vector<int>& arr, vector<int>& ID, int l, int r)
 	}
 }
 
-void File::ranking(vector<string>& vec_fileNames,string query, vector<int>& ID) {
+void File::ranking(vector<string>& vec_fileNames,vector<string> query, vector<int>& ID) {
 	//vector<int> ID;
 	vector<int> occu;
 	int mode = 0;
 	// phan tich cu phap o day ....
-	if (query.find(" AND ") != string::npos) mode = 1;
+	/*if (query.find(" AND ") != string::npos) mode = 1;
 	else if (query.find(" OR ") != string::npos) mode = 2;
 	else if (query.find(" -") != string::npos) mode = 3;
 	else if (query.find("intitle:") != string::npos)
@@ -346,26 +331,64 @@ void File::ranking(vector<string>& vec_fileNames,string query, vector<int>& ID) 
 			ID.push_back(k);
 		}
 		return;
+	}*/
+	string key;
+	int query_size = query.size();
+	bool *searched = new bool[query_size];
+	for (int i = 0; i < query_size; i++) {
+		searched[i] = false;
 	}
+	for (int i = 0; i < query_size; i++) {
+		if (query[i] == "OR") {
+			searched[i] = true;
+			if (!searched[i - 1]) {
+				search(key, ID, occu, 2);
+				searched[i - 1] = true;
+			}
+			if (!searched[i + 1]) {
+				search(key, ID, occu, 2);
+				searched[i + 1] = true;
+			}
+		}
+	}
+	for (int i = 0; i < query_size; i++) {
+		if (query[i] == "AND") {
+			searched[i] = true;
+			if (!searched[i - 1]) {
+				search(key, ID, occu, 1);
+				searched[i - 1] = true;
+			}
+			if (!searched[i + 1]) {
+				search(key, ID, occu, 1);
+				searched[i + 1] = true;
+			}
+		}
+	}
+
+
+
+
+
+
 	switch (mode) {
 	case(0):	//first word
-		search(query, ID, occu, 0);
+		search(key, ID, occu, 0);
 		break;
 	case(1):	//AND
-		search(query, ID, occu,1);
+		search(key, ID, occu,1);
 		break;
 	case(2):	//OR
-		search(query, ID, occu, 2);
+		search(key, ID, occu, 2);
 		break;
 	case(3):	//dau -
-		search(query, ID, occu, 3);
+		search(key, ID, occu, 3);
 		break;
 
 
 
 	}
 
-	int arr_size = ID.size();
+	int arr_size = ID.size();// sap xep sau khi da tim xong
 	mergeSort(occu, ID, 0, arr_size - 1);
 
 
