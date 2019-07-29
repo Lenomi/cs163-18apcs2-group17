@@ -369,6 +369,5 @@ void File::ranking(vector<string>& vec_fileNames,string query, vector<int>& ID) 
 	mergeSort(occu, ID, 0, arr_size - 1);
 
 
-
-
+	
 }
