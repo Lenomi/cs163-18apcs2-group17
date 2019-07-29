@@ -4,6 +4,7 @@
 #include<vector>
 #include<queue>
 #include<cctype>
+#include<conio.h>
 const int ALPHABET_SIZE = 36;
 
 using namespace std;
