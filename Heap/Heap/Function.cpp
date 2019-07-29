@@ -150,4 +150,88 @@ void File::loadFileNames(vector<string>& vec_fileNames)
 		}
 	}
 }
+void File::insert_synonyms()
+{
+	ifstream insert("synonysms.txt");
+	if (!insert.is_open())
+
+	{
+		cout << "File Not Found! 3\n";
+		return;
+	}
+	string key;
+	while (!insert.eof())
+	{
+		string l;
+		getline(insert, l);
+		vector<string> key;
+		string word = "";
+		for (auto x : l)
+		{
+			if (x == ' ')
+			{
+				key.push_back(word);
+				word = "";
+			}
+			else
+			{
+				word = word + x;
+			}
+		}
+		key.push_back(word);
+		int query_size = key.size(), a = 0;
+		bool *searched = new bool[query_size];
+		for (int i = 0; i < query_size; i++) {
+			searched[i] = false;
+		}
+		for (int i = 0; i < query_size; i++)
+		{
+			if (key[i] != " ")
+			{
+				if (root3 == nullptr)
+				{
+					root3 = new TrieNode;
+					root3->isEnd = false;
+					for (int i = 0; i < ALPHABET_SIZE; i++)
+						root3->children[i] = nullptr;
+				}
+				TrieNode* pCrawl = root3;
+				for (int level = 0; level < key[i].length(); level++)
+				{
+					int index;
+					if (find_slot(index, level, key[i])) {
+						if (pCrawl->children[index] == nullptr)
+						{
+							pCrawl->children[index] = new TrieNode;
+							pCrawl->children[index]->isEnd = false;
+							for (int i = 0; i < ALPHABET_SIZE; i++)
+								pCrawl->children[index]->children[i] = nullptr;
+						}
+						pCrawl = pCrawl->children[index];
+					}
+				}
+				pCrawl->isEnd = true;
+				pCrawl->synonyms = l;
+			}
+		}
+	}
+}
+bool File::search_synonyms(const string key, string &l)
+{
+	int lenght = key.length();
+	TrieNode *pCrawl = root3;
+	for (int level = 0; level < lenght; level++)
+	{
+		int index;
+		if (find_slot(index, level, key)) {
+			if (pCrawl->children[index] == nullptr)
+				return false;
+			pCrawl = pCrawl->children[index];
+		}
+	}
+	if (pCrawl != nullptr && pCrawl->isEnd) {
+		l = pCrawl->synonyms;
+		return true;
+	}
+}
 

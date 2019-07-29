@@ -19,12 +19,14 @@ struct TrieNode
 	TrieNode *children[ALPHABET_SIZE];
 	bool isEnd;
 	vector<int> file_ID;
+	string synonyms;
 };
 class File
 {
 private:
 	Node* root;
 	TrieNode* root2;
+	TrieNode* root3;
 
 public:
 	//AVL
@@ -47,8 +49,13 @@ public:
 	string AutoSuggestions(string query);
 	bool find_slot(int &index, int level, string key);
 	string convert_word(string key);
-	void ranking(vector<string>& vec_fileNames, vector<string>& query, vector<int>& ID);
+	void ranking(vector<string>& vec_fileNames, string query1, vector<int>& ID);
 	void heapSort(vector<int> &occu, vector<int> &ID, int n);
 	void heapify(vector<int> &occu, vector<int> &ID, int n, int i);
+
+
+	// synosysms
+	void insert_synonyms();
+	bool search_synonyms(const string key, string &l);
 };
 

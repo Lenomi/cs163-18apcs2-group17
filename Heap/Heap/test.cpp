@@ -7,29 +7,12 @@ int main()
 	File hi;
 	hi.loadFileNames(fileNames);
 	hi.openFiles(fileNames);
-	
+	hi.insert_synonyms();
 	
 	for (int i = 0; i < 2; i++) {
 		vector<int> ID;
-		string l;	
-		do {
-			getline(cin, l);
-		} while (l == "");
-		vector<string> query;
-		string word = "";
-		for (auto x : l)
-		{
-			if (x == ' ')
-			{
-				query.push_back(word);
-				word = "";
-			}
-			else
-			{
-				word = word + x;
-			}
-		}
-		query.push_back(word);
+		string query;
+		getline(cin, query);
 		hi.ranking(fileNames, query, ID);
 		for (int i = 0; i < 5 && i<ID.size(); i++)
 		{
