@@ -9,35 +9,21 @@ int main()
 	hi.openFiles(fileNames);
 	
 	string l;
-	/*while (l != "0")
-	{*/
-		cout << "Enter something " << endl;
-		getline(cin, l);
-		hi.ranking(fileNames, l, ID);
 
-		for (int i = 0; i < ID.size(); i++)
-		{
-			hi.Cout_name_file(fileNames, ID[i]);
-
-			//hi.Cout_file(ID[i]);
-			cout << endl;
-		}
-		_getch();
-	//}
-
-	//cout << "Enter something " << endl;
 	//getline(cin, l);
-	//hi.ranking(fileNames,l, ID);
-	//
-	//for (int i = 0; i < ID.size(); i++)
-	//{
-	//	hi.Cout_name_file(fileNames, ID[i]);
-	//	
-	//	//hi.Cout_file(ID[i]);
-	//	cout << endl;
-	//}
-	//_getch();
+	vector<string> query;
+	for (int i = 0; i < 30; i++) {
+		cin >> l;
+		query.push_back(l);
+	}
+	hi.ranking(fileNames,query, ID);
+	for (int i = 0; i < ID.size(); i++)
+	{
+		hi.Cout_name_file(fileNames, ID[i]);
+		hi.Cout_file(ID[i]);
+		cout << endl;
+	}
+	system("pause");
 
-	//system("pause");
 	return 0;
 }

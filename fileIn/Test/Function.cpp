@@ -77,7 +77,7 @@ Node* File::search(Node* root, int k)
 }
 void File::openFiles(vector<string>& vec_fileNames)
 {
-	int k = 1;
+	int k = 1;//ID bat dau bang 1
 	for (int i = 0; i < vec_fileNames.size(); i++)
 	{
 		string fileName = vec_fileNames[i];

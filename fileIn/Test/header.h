@@ -49,6 +49,6 @@ public:
 	string convert_word(string key);
 	void merge(vector<int>&arr, vector<int>& ID, int l, int m, int r);
 	void mergeSort(vector<int>&arr, vector<int>& ID, int l, int r);
-	void ranking(vector<string>& vec_fileNames,string query, vector<int>& ID);
+	void ranking(vector<string>& vec_fileNames, vector<string> query, vector<int>& ID);
 };
 
