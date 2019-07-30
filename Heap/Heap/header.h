@@ -20,6 +20,11 @@ struct TrieNode
 	bool isEnd;
 	vector<int> file_ID;
 	string synonyms;
+	TrieNode() {
+		isEnd = false;
+		for (int i = 0; i < ALPHABET_SIZE; i++)
+			children[i] = nullptr;
+	}
 };
 class File
 {
@@ -30,7 +35,7 @@ private:
 
 public:
 	//AVL
-	File() { root = nullptr; root2 = nullptr;}
+	File() { root = nullptr; root2 = nullptr; root3 = nullptr; }
 	void Insert(int k, string a, Node*& root);
 	int height(Node* a);
 	int Balance(Node *a);

@@ -23,7 +23,6 @@ int main()
 		system("pause");
 		system("cls");
 	}
-
 	system("pause");
 	return 0;
 }

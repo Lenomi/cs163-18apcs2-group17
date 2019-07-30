@@ -5,9 +5,6 @@ void File::insert_Node(string key, int ID)
 	if (root2 == nullptr)
 	{
 		root2 = new TrieNode;
-		root2->isEnd = false;
-		for (int i = 0; i < ALPHABET_SIZE; i++)
-			root2->children[i] = nullptr;
 	}
 	TrieNode* pCrawl = root2;
 	for (int level = 0; level < key.length(); level++)
@@ -17,9 +14,6 @@ void File::insert_Node(string key, int ID)
 			if (pCrawl->children[index] == nullptr)
 			{
 				pCrawl->children[index] = new TrieNode;
-				pCrawl->children[index]->isEnd = false;
-				for (int i = 0; i < ALPHABET_SIZE; i++)
-					pCrawl->children[index]->children[i] = nullptr;
 			}
 			pCrawl = pCrawl->children[index];
 		}
@@ -89,32 +83,6 @@ bool File::search(const string key, vector<int>& ID, vector<int>& occu, int mode
 				}
 			}
 
-			
-
-
-
-
-
-			/*found = false;
-			vec_size = pCrawl->file_ID.size();
-			ID_size = ID.size();
-			if (ID_size == 0)
-				return false;
-			ID_loca = 0;
-			for (int vec_loca = 0; vec_loca < vec_size; vec_loca++) {
-				for (int j = ID_loca; j < ID_size; j++) {
-					if (pCrawl->file_ID[vec_loca] == ID[j]) {
-						occu[j]++;
-						ID_loca = j;
-						found = true;
-						break;
-					}
-				}
-			}
-			if (!found) {
-				ID.clear();
-				occu.clear();
-			}*/
 			break;
 		case(2):	//OR also find exact ????
 			vec_size = pCrawl->file_ID.size();
@@ -256,7 +224,7 @@ bool File::find_slot(int &index, int level, string key) {
 		return true;
 	}
 	else if (key[level] == 35 || key[level] == 36) {
-		index = key[level] + 2;
+		index = key[level] + 1;
 		return true;
 	}
 	return false;
@@ -275,50 +243,38 @@ string File::convert_word(string key) {
 }
 
 
-// To heapify a subtree rooted with node i which is 
-// an index in arr[]. n is size of heap 
 void File::heapify(vector<int> &occu, vector<int> &ID, int n, int i)
 {
-	int largest = i; // Initialize largest as root 
-	int l = 2 * i + 1; // left = 2*i + 1 
-	int r = 2 * i + 2; // right = 2*i + 2 
+	int smallest = i; 
+	int l = 2 * i + 1; 
+	int r = 2 * i + 2; 
 
-	// If left child is larger than root 
-	if (l < n && occu[l] > occu[largest]) {
-		largest = l;
+	if (l < n && occu[l] < occu[smallest]) {
+		smallest = l;
 	}
 
-	// If right child is larger than largest so far 
-	if (r < n && occu[r] > occu[largest]) {
-		largest = r;
+	if (r < n && occu[r] < occu[smallest]) {
+		smallest = r;
 	}
 
-	// If largest is not root 
-	if (largest != i)
+	if (smallest != i)
 	{
-		swap(occu[i], occu[largest]);
-		swap(ID[i], ID[largest]);
-
-		// Recursively heapify the affected sub-tree 
-		heapify(occu, ID,n, largest);
+		swap(occu[i], occu[smallest]);
+		swap(ID[i], ID[smallest]);
+		heapify(occu, ID,n, smallest);
 	}
 }
 
-// main function to do heap sort 
+
 void File::heapSort(vector<int> &occu,vector<int> &ID, int n)
 {
-	// Build heap (reoccuange occuay) 
 	for (int i = n / 2 - 1; i >= 0; i--)
 		heapify(occu,ID, n, i);
 
-	// One by one extract an element from heap 
 	for (int i = n - 1; i >= 0; i--)
 	{
-		// Move current root to end 
 		swap(occu[0], occu[i]);
 		swap(ID[0], ID[i]);
-
-		// call max heapify on the reduced heap 
 		heapify(occu,ID, i, 0);
 	}
 }
@@ -494,7 +450,7 @@ void File::ranking(vector<string>& vec_fileNames, string query1, vector<int>& ID
 			}
 		}
 		for (int i = 0; i < query_size; i++) {
-			if (query[i] == "AND" || query[i] == "+") {
+			if (query[i] == "AND" || query[i][0] == '+') {
 				a++;
 				searched[i] = true;
 				if (!searched[i - 1] && !searched[i + 1]) {
