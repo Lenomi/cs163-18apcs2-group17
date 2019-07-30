@@ -102,6 +102,35 @@ void Draw(vector<string> &text, int page, int total_page) {
 void File::Highlight(string &inputbuf, vector<int>& ID)
 {
 	string l = inputbuf;
+	string z;
+	while (l.find("~") != string::npos)
+	{
+		int pos1 = l.find("~");
+		l.erase(pos1, 1);
+		search_synonyms(l, z);
+		l+= " " + z;
+	}
+	string y;
+	for (int i=0; i < l.size(); i++)
+	{
+		if (l[i] >= 97 && l[i] <= 122 || l[i] >= 65 && l[i] <= 90 || l[i] <= 57 && l[i] >= 48 || l[i] == 35 || l[i] == 36 || l[i]==32)
+		{
+			y += l[i];
+		}
+	}
+	l = y;
+	while (l.find(" AND") != string::npos)
+	{
+		int pos1 = l.find(" AND");
+		string Worderase = " AND";
+		l.erase(pos1, Worderase.length());
+	}
+	while (l.find(" OR") != string::npos)
+	{
+		int pos1 = l.find(" OR");
+		string Worderase = " OR";
+		l.erase(pos1, Worderase.length());
+	}
 	vector<string> query;
 	string word = "";
 	for (auto x : l)
@@ -143,6 +172,11 @@ void File::Highlight(string &inputbuf, vector<int>& ID)
 		string subline3;
 		subline1 = "...";
 		int k;
+		if (inputbuf.find("intitle:") != string::npos || inputbuf.find("filetype:") != string::npos)
+		{
+			pos.push_back(rand() % 90 + 1);
+			name.push_back(0);
+		}
 		for (int c = 0; pos[0] + c < a[i].size() && c < 30; c++)
 		{
 			string sub2 = a[i].substr(pos[0] + c, 1);

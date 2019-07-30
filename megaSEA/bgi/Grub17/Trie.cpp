@@ -251,7 +251,6 @@ string File::convert_word(string key) {
 	return done;
 }
 
-
 void File::heapify(vector<int> &occu, vector<int> &ID, int n, int i)
 {
 	int smallest = i;
@@ -344,8 +343,6 @@ void File::ranking(vector<string>& vec_fileNames, string query1, vector<int>& ID
 				string word1 = "";
 				if (search_synonyms(query[i], z))
 				{
-					query[i].erase(0);
-					query.pop_back();
 					for (auto x : z)
 					{
 						if (x == ' ')
@@ -487,12 +484,23 @@ void File::ranking(vector<string>& vec_fileNames, string query1, vector<int>& ID
 				if (query[i].find("\"", 1) != string::npos) a++;
 				for (int j = i+1; j < query_size; j++) {
 					if (query[j].find("\"") != string::npos)
+					{
 						a++;
+					}
 				}
 			}
 			if (!searched[i] && query[i][0] != '-') {
-				if (!a ) {
-					query[i] = AutoSuggestions(query[i]);
+				if (!a) {
+					string y;
+					for (int j = 0; j < query[i].size(); j++)
+					{
+						if (query[i][j] >= 97 && query[i][j] <= 122 || query[i][j] >= 65 && query[i][j] <= 90 || query[i][j] <= 57 && query[i][j] >= 48 || query[i][j] == 35 || query[i][j] == 36 || query[i][j] == 32)
+						{
+							y += query[i][j];
+						}
+					}
+					query[i] = y;
+					if(!query[i].empty()) query[i] = AutoSuggestions(query[i]);
 				}
 				searched[i] = true;
 				search(query[i], ID, occu, 2);
@@ -564,7 +572,10 @@ void File::insert_synonyms()
 					}
 				}
 				pCrawl->isEnd = true;
-				pCrawl->synonyms = l;
+				string k = l;
+				int pos = k.find(key[i]);
+				k.erase(pos, key[i].size() + 1);
+				pCrawl->synonyms = k;
 			}
 		}
 	}
