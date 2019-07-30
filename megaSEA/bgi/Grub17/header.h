@@ -65,7 +65,9 @@ public:
 
 	void insert_synonyms();
 	bool search_synonyms(const string key, string &l);
-
+	void Highlight(string &inputbuf, vector<int>& ID);
+	void  ResultScreen(string &inputbuf);
+	bool find_high(int &index, int level, string key);
 };
 
 

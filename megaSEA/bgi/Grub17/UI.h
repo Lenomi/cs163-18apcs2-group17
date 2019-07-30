@@ -18,7 +18,7 @@ File hi;
 void drawBox(int pos)
 {
 	int min = 100;
-	setcolor(COLOR(255, 255, 255));
+	setcolor(COLOR(0,0,0));
 	line(20,100+(pos-1)*min,660,100+(pos-1)*min);
 	line(20, 130 + (pos - 1) * min, 660, 130 + (pos - 1) * min);	
 	line(20, 100 + (pos - 1) * min, 20, 130 + (pos - 1) * min);
@@ -29,14 +29,14 @@ void erasBox(int pos)
 	if (pos > 0)
 	{
 		int min = 100;
-		setcolor(BLUE);
+		setcolor(COLOR(110, 223, 233));
 		line(20, 100 + (pos - 1)*min, 660, 100 + (pos - 1)*min);
 		line(20, 130 + (pos - 1) * min, 660, 130 + (pos - 1) * min);
 		line(20, 100 + (pos - 1) * min, 20, 130 + (pos - 1) * min);
 		line(660, 100 + (pos - 1) * min, 660, 130 + (pos - 1) * min);
 	}
 }
-void initSetup()
+void initSetup(int clor)
 {
 	int gdriver = IBM8514, gmode = IBM8514HI, errorcode;
 
@@ -49,10 +49,10 @@ void initSetup()
 
 //cleardevice();
 	setfillstyle(LTBKSLASH_FILL, 3);
-	setbkcolor(BLUE);
+	setbkcolor(clor);
 
 	cleardevice();
-	setbkcolor(BLUE);
+	setbkcolor(clor);
 
 	//initgraph(&gdriver, &gmode, "");
 	//setcolor(BLUE);
@@ -99,6 +99,80 @@ void Draw(vector<string> &text, int page, int total_page) {
 	}
 }
 
+void File::Highlight(string &inputbuf, vector<int>& ID)
+{
+	string l = inputbuf;
+	vector<string> query;
+	string word = "";
+	for (auto x : l)
+	{
+		if (x == ' ')
+		{
+			query.push_back(convert_word(word));
+			word = "";
+		}
+		else
+		{
+			word = word + x;
+		}
+	}
+	query.push_back(convert_word(word));
+	int query_size = query.size();
+	vector <string> a;
+	vector <string> b;
+	for (int i = 0; i < 5 && i < ID.size(); i++)
+	{
+		a.push_back(search(root, ID[i])->data);
+		b.push_back(convert_word(a.back()));
+	}
+	for (int i = 0; i < 5 && i < ID.size(); i++)
+	{
+		vector<int> pos;
+		vector<int> name;
+		for (int j = 0; j < query_size; j++)
+		{
+			if (b[i].find(query[j]) != string::npos)
+			{
+				pos.push_back(b[i].find(query[j]));
+				name.push_back(query[j].size());
+			}
+		}
+		string sub;
+		string subline1;
+		string subline2;
+		string subline3;
+		subline1 = "...";
+		int k;
+		for (int c = 0; pos[0] + c < a[i].size() && c < 30; c++)
+		{
+			string sub2 = a[i].substr(pos[0] + c, 1);
+			sub += sub2;
+			k = c;
+		}
+		subline1 += sub;
+		for (int c = k+1; pos[0] + c < a[i].size() && c < 60; c++)
+		{
+			string sub2 = a[i].substr(pos[0] + c, 1);
+			subline2 += sub2;
+			k = c;
+		}
+		for (int c = k + 1; pos[0] + c < a[i].size() && c < 90; c++)
+		{
+			string sub2 = a[i].substr(pos[0] + c, 1);
+			subline3 += sub2;
+		}
+		subline3 += "...";
+		string NAME = a[i].substr(pos[0], name[0]);
+		
+		setcolor(WHITE);
+		outtextxy(30, 145 + i * 100, subline1.c_str());
+		outtextxy(30, 170 + i * 100, subline2.c_str());
+		outtextxy(30, 195 + i * 100, subline3.c_str());
+		setcolor(RED);
+		outtextxy(60, 145 + i * 100, NAME.c_str());
+
+	}
+}
 void showText(int id) 
 
 {
@@ -140,13 +214,14 @@ void showText(int id)
 
 
 
-void  ResultScreen(string &inputbuf)	
+void  File::ResultScreen(string &inputbuf)	
 {
 	while (1)
 	{
 #pragma region searching bar
 		closegraph();
-		initSetup();
+		initSetup(COLOR(110, 223, 233));
+		
 		int midx = getmaxx() / 2;
 		int midy = getmaxy() / 2;
 
@@ -202,6 +277,7 @@ void  ResultScreen(string &inputbuf)
 		hi.ranking(fileNames, inputbuf.c_str(), ID);
 		if (ID.size() == 0)
 		{
+			setcolor(COLOR(229,99,39));
 			settextstyle(3, HORIZ_DIR, 3);
 			outtextxy(20, 120, "Can not SEA the NEMO you're Finding");
 			outtextxy(20, 150, "'(> ~ <)' ");
@@ -210,10 +286,12 @@ void  ResultScreen(string &inputbuf)
 		{
 			for (int i = 0; i < 5 && i < ID.size(); i++)
 			{
-
+				settextstyle(1, HORIZ_DIR, 3);
+				setcolor(COLOR(229, 99, 39));
 				outtextxy(30, 120 + i * 100, fileNames[ID[i] - 1].c_str());
 
 			}
+			Highlight(inputbuf, ID);
 		}
 
 #pragma endregion
@@ -243,6 +321,7 @@ void  ResultScreen(string &inputbuf)
 					//setcolor(BLUE);
 					bar(20, 15, 650, 35);
 					setcolor(WHITE);
+					settextstyle(1, HORIZ_DIR, 3);
 
 					settextjustify(LEFT_TEXT, CENTER_TEXT);
 					outtextxy(20, 30, inputbuf.c_str());
@@ -252,6 +331,7 @@ void  ResultScreen(string &inputbuf)
 					inputbuf.pop_back();
 					setcolor(WHITE);
 					settextjustify(RIGHT_TEXT, CENTER_TEXT);
+					settextstyle(1, HORIZ_DIR, 3);
 
 					outtextxy(650, 30, inputbuf.c_str());
 					bar(0, 15, 20, 35);
@@ -350,6 +430,7 @@ void  ResultScreen(string &inputbuf)
 					inputbuf += c;
 					setfillstyle(0, BLUE);
 					bar(20, 15, 650, 35);
+					settextstyle(1, HORIZ_DIR, 3);
 
 					if (inputbuf.length() >= 0 && inputbuf.length() <= 33)
 					{
@@ -360,6 +441,7 @@ void  ResultScreen(string &inputbuf)
 					else if (inputbuf.length() > 33)
 					{
 						settextjustify(RIGHT_TEXT, CENTER_TEXT);
+						settextstyle(1, HORIZ_DIR, 3);
 
 						outtextxy(650, 30, inputbuf.c_str());
 						//settextstyle(2, HORIZ_DIR, 3);
@@ -427,7 +509,7 @@ void InsertScreen()
 
 void searchScreen()
 {
-	initSetup();
+	initSetup(COLOR(112,226,236));
 
 	int midx = getmaxx() / 2;
 	int midy = getmaxy() / 2;
@@ -458,12 +540,12 @@ void searchScreen()
 #pragma region LOGO
 	//setfillpattern
 	setfillstyle(LTBKSLASH_FILL, 15);
-	setcolor(COLOR(15, 30, 100));
+	setcolor(COLOR(115,229,239));
 	settextstyle(TRIPLEX_FONT, HORIZ_DIR, 10);
 	settextjustify(CENTER_TEXT, CENTER_TEXT);
 	//setusercharsize(1, 4, 4, 1);
 	outtextxy(midx, midy - 35, "NEW        RCH");
-	setcolor(COLOR(255, 102, 0));
+	setcolor(COLOR(229, 99, 39));
 	outtextxy(midx + 10, midy - 35, "S   A");
 
 	{setcolor(15);
@@ -509,14 +591,14 @@ void searchScreen()
 				setfillstyle(0, BLUE);
 				//setcolor(BLUE);
 				bar(2 * midx / 5 - 10, midy + 5, 930, midy + 40);
-				setcolor(WHITE);
+				setcolor(COLOR(229, 99, 39));
 				settextjustify(LEFT_TEXT, CENTER_TEXT);
 				outtextxy(2 * midx / 5, midy + 30, inputbuf.c_str());
 			}
 			else if (inputbuf.length() > 28)
 			{
 				inputbuf.pop_back();
-				setcolor(WHITE);
+				setcolor(COLOR(229, 99, 39));
 				settextjustify(RIGHT_TEXT, CENTER_TEXT);
 				outtextxy(920, midy + 30, inputbuf.c_str());
 				bar(0, midy + 5, 2 * midx / 5 - 10, midy + 40);
@@ -544,7 +626,7 @@ void searchScreen()
 		default:
 			if (c >= ' ' && c <= '~')
 			{
-				setcolor(WHITE);
+				setcolor(COLOR(229, 99, 39));
 				inputbuf += c;
 				setfillstyle(0, BLUE);
 				bar(2 * midx / 5 - 10, midy + 5, 930, midy + 40);
@@ -568,7 +650,7 @@ void searchScreen()
 
 	}
 	closegraph();
-	ResultScreen(inputbuf);
+	hi.ResultScreen(inputbuf);
 }
 
 

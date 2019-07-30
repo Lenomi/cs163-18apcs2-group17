@@ -230,12 +230,21 @@ bool File::find_slot(int &index, int level, string key) {
 	return false;
 }
 
+bool File::find_high(int &index, int level, string key) {
+	index = key[level];
+	if (key[level] >= 65 && key[level] <= 90) {
+		index = key[level] + 32;
+		return true;
+	}
+	return true;
+}
+
 string File::convert_word(string key) {
 	int leng = key.length();
 	string done;
 	int index;
 	for (int i = 0; i < leng; i++) {
-		if (find_slot(index, i, key)) {
+		if (find_high(index, i, key)) {
 			done += char(index);
 		}
 	}
@@ -364,6 +373,7 @@ void File::ranking(vector<string>& vec_fileNames, string query1, vector<int>& ID
 			if (query[i].find("..") != string::npos)
 			{
 				a++;
+				searched[i] = true;
 				int pos = string::npos;
 				bool found = false;
 				while ((pos = query[i].find("$")) != string::npos)

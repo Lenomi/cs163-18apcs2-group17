@@ -129,31 +129,38 @@ void File::openFiles(vector<string>& vec_fileNames)
 		//delay(100);
 		circle(midx, midy, 185);
 
+		//setcolor(WHITE);
+		//settextstyle(3, HORIZ_DIR, 5);
+		//settextjustify(CENTER_TEXT, CENTER_TEXT);
+		//outtextxy(680, 700, "< < < L O A D I N G > > >");
 
 
 		setcolor(15);
 		circle(midx, midy, 185);
 		//delay(10);
 
-		setcolor(13);
+		setcolor(COLOR(204,208,207));
 		circle(midx, midy - 92, 46);
 		setfillstyle(i % 12, RED);
-		floodfill(midx, midy - 92, 13);
+		floodfill(midx, midy - 92, COLOR(204, 208, 207));
 
-		setcolor(13);
+		setcolor(COLOR(204, 208, 207));
 		circle(midx + 92, midy, 46);
 		setfillstyle(i % 12, BLUE);
-		floodfill(midx + 92, midy, 13);
+		floodfill(midx + 92, midy, COLOR(204, 208, 207));
 
-		setcolor(13);
+		setcolor(COLOR(204, 208, 207));
 		circle(midx, midy + 92, 46);
 		setfillstyle(i % 12, YELLOW);
-		floodfill(midx, midy + 92, 13);
+		floodfill(midx, midy + 92, COLOR(204, 208, 207));
 
-		setcolor(13);
+		setcolor(COLOR(204, 208, 207));
 		circle(midx - 92, midy, 46);
 		setfillstyle(i % 12, GREEN);
-		floodfill(midx - 92, midy, 13);
+		floodfill(midx - 92, midy, COLOR(204, 208, 207));
+
+
+		
 		//delay(40);
 	}
 
