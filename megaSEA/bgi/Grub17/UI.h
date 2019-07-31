@@ -103,13 +103,47 @@ void File::Highlight(string &inputbuf, vector<int>& ID)
 {
 	string l = inputbuf;
 	string z;
-	while (l.find("~") != string::npos)
+	vector<string> query1;
+	string word4 = "";
+	for (auto x : l)
 	{
-		int pos1 = l.find("~");
-		l.erase(pos1, 1);
-		search_synonyms(l, z);
-		l+= " " + z;
+		if (x == ' ')
+		{
+			query1.push_back(convert_word(word4));
+			word4 = "";
+		}
+		else
+		{
+			word4 = word4 + x;
+		}
 	}
+	query1.push_back(convert_word(word4));
+	while (!query1.empty() && query1.back() == "") query1.pop_back();
+	int query1_size = query1.size();
+	for(int i=0 ; i<query1_size; i++)
+	{
+		if (query1[i][0] == '~')
+		{
+			int pos1 = l.find("~");
+			l.erase(pos1, 1);
+			query1[i].erase(0,1);
+			search_synonyms(query1[i], z);
+		}
+	}
+	for (int i = 0; i < query1_size; i++)
+	{
+		string Worderase;
+		if (query1[i][0] == '-')
+		{
+			Worderase = query1[i].substr(1);
+			while (l.find(Worderase) != string::npos)
+			{
+				int pos1 = l.find(Worderase);
+				l.erase(pos1, Worderase.length());
+			}
+		}
+	}
+	l += " " + z;
 	string y;
 	for (int i=0; i < l.size(); i++)
 	{
@@ -138,6 +172,7 @@ void File::Highlight(string &inputbuf, vector<int>& ID)
 		if (x == ' ')
 		{
 			query.push_back(convert_word(word));
+			while (!query.empty() && query.back() == "") query.pop_back();
 			word = "";
 		}
 		else
@@ -146,6 +181,7 @@ void File::Highlight(string &inputbuf, vector<int>& ID)
 		}
 	}
 	query.push_back(convert_word(word));
+	while (!query.empty() && query.back() == "") query.pop_back();
 	int query_size = query.size();
 	vector <string> a;
 	vector <string> b;
@@ -172,7 +208,7 @@ void File::Highlight(string &inputbuf, vector<int>& ID)
 		string subline3;
 		subline1 = "...";
 		int k;
-		if (inputbuf.find("intitle:") != string::npos || inputbuf.find("filetype:") != string::npos)
+		if (inputbuf.find("intitle:") != string::npos || inputbuf.find("filetype:") != string::npos || inputbuf.find(".."))
 		{
 			pos.push_back(rand() % 90 + 1);
 			name.push_back(0);

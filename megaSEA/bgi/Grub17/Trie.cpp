@@ -7,10 +7,12 @@ void File::insert_Node(string key, int ID)
 		root2 = new TrieNode;
 	}
 	TrieNode* pCrawl = root2;
+	bool found = false;
 	for (int level = 0; level < key.length(); level++)
 	{
 		int index;
 		if (find_slot(index, level, key)) {
+			found = true;
 			if (pCrawl->children[index] == nullptr)
 			{
 				pCrawl->children[index] = new TrieNode;
@@ -18,8 +20,10 @@ void File::insert_Node(string key, int ID)
 			pCrawl = pCrawl->children[index];
 		}
 	}
-	pCrawl->isEnd = true;
-	pCrawl->file_ID.push_back(ID);
+	if (found) {
+		pCrawl->isEnd = true;
+		pCrawl->file_ID.push_back(ID);
+	}
 }
 
 // searching a word 
@@ -32,8 +36,13 @@ bool File::search(const string key, vector<int>& ID, vector<int>& occu, int mode
 	{
 		int index;
 		if (find_slot(index, level, key)) {
-			if (pCrawl->children[index] == nullptr)
+			if (pCrawl->children[index] == nullptr) {
+				if (mode == 1) {
+					ID.clear();
+					occu.clear();
+				}
 				return false;
+			}
 			pCrawl = pCrawl->children[index];
 		}
 	}
@@ -45,7 +54,6 @@ bool File::search(const string key, vector<int>& ID, vector<int>& occu, int mode
 		vector<int> ID_temp;
 		vector<int> occu_temp;
 		int temp_size;
-		int temp_loca = 0;
 		switch (mode) {
 		case(1):	//AND
 			ID_size = ID.size();
@@ -65,21 +73,18 @@ bool File::search(const string key, vector<int>& ID, vector<int>& occu, int mode
 			}
 			temp_size = ID_temp.size();
 			for (ID_loca = 0; ID_loca < ID_size; ID_loca++) {
-				for (int j = temp_loca; j < temp_size; j++) {
+				found = false;
+				for (int j = 0; j < temp_size; j++) {
 					if (ID[ID_loca] == ID_temp[j]) {
 						occu[ID_loca] = occu[ID_loca] * occu_temp[j];
 						found = true;
-						temp_loca = j + 1;
-						break;
 					}
 				}
-				if (found) {
-					found = false;
-				}
-				else {
+				if (!found) {
 					ID.erase(ID.begin() + ID_loca);
 					ID_size--;
 					occu.erase(occu.begin() + ID_loca);
+					ID_loca--;
 				}
 			}
 
@@ -111,33 +116,29 @@ bool File::search(const string key, vector<int>& ID, vector<int>& occu, int mode
 			}
 			break;
 		case(3):	//Dau -
-			vec_size = pCrawl->file_ID.size();
 			ID_size = ID.size();
 			if (ID_size == 0)
 				return true;
+			vec_size = pCrawl->file_ID.size();
 			ID_loca = 0;
 			for (int vec_loca = 0; vec_loca < vec_size; vec_loca++) {
 				if (vec_loca > 0 && pCrawl->file_ID[vec_loca] == pCrawl->file_ID[vec_loca - 1]) {
 					continue;
 				}
-				for (int j = ID_loca; j < ID_size; j++) {
+				for (int j = 0; j < ID_size; j++) {
 					if (pCrawl->file_ID[vec_loca] == ID[j]) {
 						ID.erase(ID.begin() + j);
 						occu.erase(occu.begin() + j);
 						ID_loca = j;
 						ID_size--;
-						break;
 					}
 				}
 			}
 			break;
 		}
-
-
-
-		return true; // does it work ?
-		//need more code to return
 	}
+	return true; // does it work ?
+	//need more code to return
 }
 
 bool File::isLastNode(TrieNode* root2)
@@ -304,7 +305,7 @@ void File::ranking(vector<string>& vec_fileNames, string query1, vector<int>& ID
 		}
 	}
 	query.push_back(word);
-
+	while (!query.empty() && query.back() == "") query.pop_back();
 	vector<int> occu;
 	int mode = 0;
 	int query_size = query.size(), a = 0;
@@ -357,6 +358,7 @@ void File::ranking(vector<string>& vec_fileNames, string query1, vector<int>& ID
 					}
 					query.push_back(word1);
 					query_size = query.size(), a = 0;
+					delete[]searched;
 					searched = new bool[query_size];
 					for (int i = 0; i < query_size; i++) {
 						searched[i] = false;
@@ -486,6 +488,21 @@ void File::ranking(vector<string>& vec_fileNames, string query1, vector<int>& ID
 					if (query[j].find("\"") != string::npos)
 					{
 						a++;
+						if (!(i == j - 1 && query[i] == query[j] && query[i] == "\"")) {
+							if (query[j][0] == '"') {
+								j--;
+							}
+							for (int t = i; t <= j; t++) {
+								if (!searched[t])
+									searched[t] = true;
+								if (ID.empty()) {
+									search(query[t], ID, occu, 2);
+								}
+								else {
+									search(query[t], ID, occu, 1);
+								}
+							}
+						}
 					}
 				}
 			}
