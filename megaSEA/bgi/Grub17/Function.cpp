@@ -84,8 +84,8 @@ void File::openFiles(vector<string>& vec_fileNames)
 	for (int i = 0; i < vec_fileNames.size(); i++)
 	{
 		string fileName = vec_fileNames[i];
-		string path("database\\" + fileName);
-		//string path("test\\" + fileName);
+		//string path("database\\" + fileName);
+		string path("test\\" + fileName);
 		ifstream fin;
 		fin.open(path.c_str());
 		if (!fin.is_open())
@@ -183,8 +183,8 @@ void File::Cout_name_file(vector<string>& vec_fileNames, int k)
 }
 void File::loadFileNames(vector<string>& vec_fileNames)
 {
-	ifstream inFile("dataName.txt");
-	//ifstream inFile("___index.txt");
+	//ifstream inFile("dataName.txt");
+	ifstream inFile("___index.txt");
 
 	if (!inFile.is_open())
 

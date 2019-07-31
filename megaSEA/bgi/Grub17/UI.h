@@ -2,7 +2,8 @@
 #ifndef _UI_H_
 #define _UI_H_
 
-
+#include <chrono> 
+using namespace std::chrono;
 #include<iostream>
 #include"graphics.h"
 #include"winbgim.h"
@@ -14,7 +15,7 @@ using namespace std;
 vector<string> fileNames;
 
 File hi;
-
+void searchScreen();
 void drawBox(int pos)
 {
 	int min = 100;
@@ -344,7 +345,21 @@ void  File::ResultScreen(string &inputbuf)
 		settextjustify(LEFT_TEXT, CENTER_TEXT);
 		settextstyle(1, HORIZ_DIR, 3);
 
+
+		//auto start = high_resolution_clock::now();
 		hi.ranking(fileNames, inputbuf.c_str(), ID);
+		//auto stop = high_resolution_clock::now();
+
+		// Get duration. Substart timepoints to  
+		// get durarion. To cast it to proper unit 
+		// use duration cast method 
+		//auto duration = duration_cast<microseconds>(stop - start);
+
+		//cout << "Time taken by function: "
+		//	<< duration.count() << " microseconds" << endl;
+
+
+
 		if (ID.size() == 0)
 		{
 			setcolor(COLOR(229,99,39));
@@ -361,7 +376,16 @@ void  File::ResultScreen(string &inputbuf)
 				outtextxy(30, 120 + i * 100, fileNames[ID[i] - 1].c_str());
 
 			}
+
 			Highlight(inputbuf, ID);
+			//cout << inputbuf;
+			//cout << endl;
+			//for (int i = 0; i < 5 && i < ID.size(); i++)
+			//{
+			//	Cout_name_file(fileNames,ID[i]);
+			//	cout << ", ";
+			//}
+			//cout << endl;
 		}
 
 #pragma endregion
@@ -423,7 +447,7 @@ void  File::ResultScreen(string &inputbuf)
 			}
 			case 27: /* Escape = Abort */
 				inputbuf[0] = 0;
-				exit(0);
+				searchScreen();
 				break;
 			case 72://UP
 			{
