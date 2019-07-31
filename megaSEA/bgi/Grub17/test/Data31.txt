@@ -1,1 +1,147 @@
-FEW ATHLETES have been as blessed and cursed as Caster Semenya. All that the 28-year-old South African has ever done is run as fast as her legs could carry her—fast enough to win back-to-back Olympic gold medals over 800 metres. But her remarkable body has also drawn ridicule, speculation and a decade of investigation.In 2009, when she breezed to a World Championship title, the International Association of Athletics Federations (IAAF), the sport’s governing body, began examining whether she might be intersex—an umbrella term for people with developmental conditions affecting the genitalia and gonads. To protect her privacy, the findings are unpublished. The IAAF has since been in a regulatory tussle about whether Ms Semenya must adjust her testosterone levels to compete as a woman. On May 1st the Court of Arbitration for Sport (CAS), an international court for sports, ruled against her. Its decision covers only athletes with one of a group of syndromes known as 46,XY, which means that a person with a male Y chromosome and high testosterone does not develop male genitalia. The ruling has implications far beyond Ms Semenya’s sport—and indeed, beyond sport itself.Get our daily newsletterUpgrade your inbox and get our Daily Dispatch and Editor's Picks.CAS allowed the IAAF to impose a limit of 5 nanomoles of testosterone per litre of blood (nmol/L) on runners with 46,XY conditions. This threshold is far below the normal male range of 8-30nmol/L, but well above the normal female range of 0.1-1.8nmol/L. The ruling covers women’s races between 400 metres and a mile. To continue racing over 800 metres, Ms Semenya would have to undergo hormone therapy, which may have nasty side-effects, such as an increased risk of blood clots.Testing the limitsMs Semenya has endured hormone therapy before, when the IAAF in 2011 introduced a testosterone limit of 10nmol/L for women in all track-and-field events. CAS suspended that rule in 2015, when Dutee Chand, an Indian sprinter with abnormally high testosterone levels, disputed that there was any proof that women like her received an unfair advantage in all athletic events.After a decade of gathering data on the question, the results the IAAF presented showed that women with high levels of testosterone did disproportionately well in middle-distance races—but no evidence of any effect in most other events. Ms Semenya is one of a handful of runners affected by the ruling. Rather than again submitting to hormone therapy, which added about 4% to her 800-metre time, she could switch to the 5,000-metre race, which is not covered by the new rules.The precedent CAS has set could affect every sport. What makes it even more contentious is that testosterone limits also apply to transgender women, who were born male but identify as women. The International Olympic Committee (IOC) already introduced a testosterone cap of 10nmol/L for trans women in all sports in 2016, replacing its previous requirement for athletes to have undergone genital-reconstruction surgery—a procedure few trans people undertake. CAS’s ruling makes the IOC’s policy likely to stand up in court, although it is now considering cutting its limit to 5 nmol/L. Not a single openly trans athlete has yet competed in the Olympics.The requirement for trans women to undergo hormone therapy to compete in women’s events could face legal challenges. Several Western countries are weighing laws that allow people to categorise their own gender. In America the Equality Act, a bill proposed by Democrats, would mean that sports officials could no longer discriminate between athletes using biological sex, explains Doriane Lambelet Coleman, a legal scholar at Duke University who is a former international 800metre runner. It could force Team USA to select trans women who have had no hormone treatment—even though the IOC would bar them from international events.At some levels of sport, self-identified gender is in many places already becoming the norm. Since September Canadian university athletes have been able to compete in the category of their choice, without hormone treatment. American high-school students in 18 states and Washington, DC, could already make that decision. In Connecticut trans girls finished first and second in the 100 metres at last year’s junior state championships.The binary codeThe underlying problem is a basic one: sports bodies still have no satisfactory way to distinguish between men and women. The most obvious route—to pick a binary characteristic, such as having testes or a Y chromosome—fails in a few cases. Between 1968 and 1996 officials at the Olympics verified athletes’ sex through chromosome testing. But some women’s performances are not enhanced by having Y chromosomes and testes. Maria José Martínez-Patiño, a Spanish hurdler with a 46,XY condition, was kicked off the national team after a test in 1985. Geneticists later proved that her body was insensitive to testosterone, so her condition conferred no athletic advantage. The IAAF subsequently stopped chromosome testing.Just one in 20,000 people is affected by 46,XY conditions. But an unusually high number of intersex women take part in elite sport. By one estimate, 8.5% of championship medals in women’s middle-distance races in the past 25 years have been won by 46,XY people—1,700 times their share of the general population. Over time, governing bodies have decided not to exclude such people if their conditions neither raise doubts about their biological sex nor confer a sporting advantage.This has led them to a second option: picking a characteristic that exists on a spectrum. Scientists generally agree that testosterone is the best candidate. From puberty, the hormone drives the development of male traits, such as bigger muscles, sturdier bones and less fat. The gap between boys’ and girls’ running times widens during adolescence (see chart). The fastest men run about 10% faster than women. The discrepancy is even wider for jumping events. As a result, artificial testosterone is a banned substance.However, using testosterone as a marker also has its flaws. People’s bodies respond to the hormone differently. It had no measurable effect on Ms Patiño. And once officials pick a testosterone threshold for intersex athletes, it is likely also to apply to trans women, who can use hormone therapy to fall below it.The success of intersex athletes in middle-distance running and the 4% decline in Ms Semenya’s performance after hormone therapy show that testosterone matters. But a couple of studies among small samples of elite women have found no statistical relationship between testosterone levels and performance in certain sports. The analysis that the IAAF presented in Ms Semenya’s case is of this type: in most events it looked at, it found no correlation at all.However, Ross Tucker, a sports scientist, points out, such studies are limited to people who perform at a similar level. A study of professional basketball players is unlikely to find a link between height and proficiency—the short, bad ones have already been filtered out. Among female athletes overall, the range of testosterone levels is quite large, but the average elite sportswoman has a higher one than an average woman (just as the typical basketball star bumps ceilings). The IAAF’s data had other flaws. Three independent researchers found them riddled with errors, such as athletes who had been double-counted.The IAAF’s decision to cap intersex middle-distance athletes at 5nmol/L is based on estimating the maximum level that a non-intersex woman could naturally reach. Critics argue that this is no different from, say, penalising basketball players for their height. But others counter it is a price worth paying, for protecting women’s sport. (Nobody is agitating for a short-person’s basketball league.)The guesswork around testosterone becomes even sketchier for contact sports, because measuring the ability of a wrestler or rugby player is harder than timing a runner, and their bone structure matters more. Anyone who develops a stronger skeleton at puberty has a permanent advantage.Such advantages affect many trans athletes as well as intersex ones, sparking controversy. Fallon Fox, an American mixed-martial-arts fighter, was pilloried when she revealed in 2013 that she was a male who had undergone gender-reassignment surgery. Hannah Mouncey, a trans woman who had represented the Australian men’s handball team before undergoing hormone therapy and switching to the women’s team, was barred from the women’s Australian Football League in 2017.Good data for trans women are as scarce as for intersex ones. Joanna Harper, a scientist and trans runner, has conducted one of the few studies, of eight non-elite female endurance runners who had earlier competed as men. Their slower times after hormone therapy put them in much the same relative positions in women’s races as they had achieved in men’s. But the data are too scant to say that this holds for all athletes. Whereas chromosome tests discriminated against a small number of women with unusual conditions, the new rules could disadvantage a large number of women by allowing some stronger and faster intersex and trans women to compete against them.The law of comparative advantageMs Harper points out that there has been no deluge of trans women gaming the system. The trans athlete who has come closest to dominating an individual sport is Laurel Hubbard, a New Zealander who held junior national weightlifting records as a man, became an international contender as a woman and in 2017 finished second in the World Championships.International sporting bodies are unlikely ever to accept self-identified gender as the basis for admitting trans women to women’s competitions. Even so, many women still worry that the testosterone threshold could allow some fairly good male competitors to become all-conquering female ones. Some trans women call such fears scaremongering. The court’s ruling on Ms Semenya is not going to settle that argument.This article appeared in the International section of the print edition under the headline "A defining moment"
+Chapter 3 Letters from No One
+ 
+The escape of the Brazilian boa constrictor earned Harry his longest-ever punishment. By the time he was allowed out of his cupboard again, the summer holidays had started and Dudley had already broken his new video camera, crashed his remote control airplane, and, first time out on his racing bike, knocked down old Mrs. Figg as she crossed Privet Drive on her crutches. 
+
+Harry was glad school was over, but there was no escaping Dudley's gang, who visited the house every single day. Piers, Dennis, Malcolm, and Gordon were all big and stupid, but as Dudley was the biggest and stupidest of the lot, he was the leader. The rest of them were all quite happy to join in Dudley's favorite sport: Harry Hunting. 
+
+This was why Harry spent as much time as possible out of the house, wandering around and thinking about the end of the holidays, where he could see a tiny ray of hope. When September came he would be going off to secondary school and, for the first time in his life, he wouldn't be with Dudley. Dudley had been accepted at Uncle Vernon's old private school, Smeltings. Piers Polkiss was going there too. Harry, on the other hand, was going to Stonewall High, the local public school. Dudley thought this was very funny. 
+
+"They stuff people's heads down the toilet the first day at Stonewall," he told Harry. "Want to come upstairs and practice?"
+
+"No, thanks," said Harry. "The poor toilet's never had anything as horrible as your head down it -- it might be sick. " Then he ran, before Dudley could work out what he'd said. 
+
+One day in July, Aunt Petunia took Dudley to London to buy his Smeltings uniform, leaving Harry at Mrs. Figg's. Mrs. Figg wasn't as bad as usual. It turned out she'd broken her leg tripping over one of her cats, and she didn't seem quite as fond of them as before. She let Harry watch television and gave him a bit of chocolate cake that tasted as though she'd had it for several years. 
+
+That evening, Dudley paraded around the living room for the family in his brand-new uniform. Smeltings' boys wore maroon tailcoats, orange knickerbockers, and flat straw hats called boaters. They also carried knobbly sticks, used for hitting each other while the teachers weren't looking. This was supposed to be good training for later life. 
+
+As he looked at Dudley in his new knickerbockers, Uncle Vernon said gruffly that it was the proudest moment of his life. Aunt Petunia burst into tears and said she couldn't believe it was her Ickle Dudleykins, he looked so handsome and grown-up. Harry didn't trust himself to speak. He thought two of his ribs might already have cracked from trying not to laugh. 
+
+There was a horrible smell in the kitchen the next morning when Harry went in for breakfast. It seemed to be coming from a large metal tub in the sink. He went to have a look. The tub was full of what looked like dirty rags swimming in gray water. 
+
+"What's this?" he asked Aunt Petunia. Her lips tightened as they always did if he dared to ask a question. 
+
+"Your new school uniform," she said. 
+
+Harry looked in the bowl again. 
+
+"Oh," he said, "I didn't realize it had to be so wet. "
+
+"Don't be stupid," snapped Aunt Petunia. "I'm dyeing some of Dudley's old things gray for you. It'll look just like everyone else's when I've finished. "
+
+Harry seriously doubted this, but thought it best not to argue. He sat down at the table and tried not to think about how he was going to look on his first day at Stonewall High -- like he was wearing bits of old elephant skin, probably. 
+
+Dudley and Uncle Vernon came in, both with wrinkled noses because of the smell from Harry's new uniform. Uncle Vernon opened his newspaper as usual and Dudley banged his Smelting stick, which he carried everywhere, on the table. 
+
+They heard the click of the mail slot and flop of letters on the doormat. 
+
+"Get the mail, Dudley," said Uncle Vernon from behind his paper. 
+
+"Make Harry get it. "
+
+"Get the mail, Harry. "
+
+"Make Dudley get it. "
+
+"Poke him with your Smelting stick, Dudley. "
+
+Harry dodged the Smelting stick and went to get the mail. Three things lay on the doormat: a postcard from Uncle Vernon's sister Marge, who was vacationing on the Isle of Wight, a brown envelope that looked like a bill, and -- a letter for Harry. 
+
+Harry picked it up and stared at it, his heart twanging like a giant elastic band. No one, ever, in his whole life, had written to him. Who would? He had no friends, no other relatives -- he didn't belong to the library, so he'd never even got rude notes asking for books back. Yet here it was, a letter, addressed so plainly there could be no mistake:
+
+Mr. H. Potter
+
+The Cupboard under the Stairs
+
+4 Privet Drive
+
+Little Whinging
+
+Surrey
+
+The envelope was thick and heavy, made of yellowish parchment, and the address was written in emerald-green ink. There was no stamp. 
+
+Turning the envelope over, his hand trembling, Harry saw a purple wax seal bearing a coat of arms; a lion, an eagle, a badger, and a snake surrounding a large letter H. 
+
+"Hurry up, boy!" shouted Uncle Vernon from the kitchen. "What are you doing, checking for letter bombs?" He chuckled at his own joke. 
+
+Harry went back to the kitchen, still staring at his letter. He handed Uncle Vernon the bill and the postcard, sat down, and slowly began to open the yellow envelope. 
+
+Uncle Vernon ripped open the bill, snorted in disgust, and flipped over the postcard. 
+
+"Marge's ill," he informed Aunt Petunia. "Ate a funny whelk. . . "
+
+"Dad!" said Dudley suddenly. "Dad, Harry's got something!"
+
+Harry was on the point of unfolding his letter, which was written on the same heavy parchment as the envelope, when it was jerked sharply out of his hand by Uncle Vernon. 
+
+"That's mine!" said Harry, trying to snatch it back. 
+
+"Who'd be writing to you?" sneered Uncle Vernon, shaking the letter open with one hand and glancing at it. His face went from red to green faster than a set of traffic lights. And it didn't stop there. Within seconds it was the grayish white of old porridge. 
+
+"P-P-Petunia!" he gasped. 
+
+Dudley tried to grab the letter to read it, but Uncle Vernon held it high out of his reach. Aunt Petunia took it curiously and read the first line. For a moment it looked as though she might faint. She clutched her throat and made a choking noise. 
+
+"Vernon! Oh my goodness -- Vernon!"
+
+They stared at each other, seeming to have forgotten that Harry and Dudley were still in the room. Dudley wasn't used to being ignored. He gave his father a sharp tap on the head with his Smelting stick. 
+
+"I want to read that letter," he said loudly. 
+
+"I want to read it," said Harry furiously, "as it's mine. "
+
+"Get out, both of you," croaked Uncle Vernon, stuffing the letter back inside its envelope. 
+
+Harry didn't move. 
+
+"I WANT MY LETTER!" he shouted. 
+
+"Let me see it!" demanded Dudley. 
+
+"OUT!" roared Uncle Vernon, and he took both Harry and Dudley by the scruffs of their necks and threw them into the hall, slamming the kitchen door behind them. Harry and Dudley promptly had a furious but silent fight over who would listen at the keyhole; Dudley won, so Harry, his glasses dangling from one ear, lay flat on his stomach to listen at the crack between door and floor. 
+
+"Vernon," Aunt Petunia was saying in a quivering voice, "look at the address -- how could they possibly know where he sleeps? You don't think they're watching the house?"
+
+"Watching -- spying -- might be following us," muttered Uncle Vernon wildly. 
+
+"But what should we do, Vernon? Should we write back? Tell them we don't want--"
+
+Harry could see Uncle Vernon's shiny black shoes pacing up and down the kitchen. 
+
+"No," he said finally. "No, we'll ignore it. If they don't get an answer. . . Yes, that's best. . . we won't do anything. . . "
+
+"But--"
+
+"I'm not having one in the house, Petunia! Didn't we swear when we took him in we'd stamp out that dangerous nonsense?"
+
+That evening when he got back from work, Uncle Vernon did something he'd never done before; he visited Harry in his cupboard. 
+
+"Where's my letter?" said Harry, the moment Uncle Vernon had squeezed through the door. "Who's writing to me?"
+
+"No one. It was addressed to you by mistake," said Uncle Vernon shortly. "I have burned it. "
+
+"It was not a mistake," said Harry angrily, "it had my cupboard on it. "
+
+"SILENCE!" yelled Uncle Vernon, and a couple of spiders fell from the ceiling. He took a few deep breaths and then forced his face into a smile, which looked quite painful. 
+
+"Er -- yes, Harry -- about this cupboard. Your aunt and I have been thinking. . . you're really getting a bit big for it. . . we think it might be nice if you moved into Dudley's second bedroom. 
+
+"Why?" said Harry. 
+
+"Don't ask questions!" snapped his uncle. "Take this stuff upstairs, now. "
+
+The Dursleys' house had four bedrooms: one for Uncle Vernon and Aunt Petunia, one for visitors (usually Uncle Vernon's sister, Marge), one where Dudley slept, and one where Dudley kept all the toys and things that wouldn't fit into his first bedroom. It only took Harry one trip upstairs to move everything he owned from the cupboard to this room. He sat down on the bed and stared around him. Nearly everything in here was broken. The month-old video camera was lying on top of a small, working tank Dudley had once driven over the next door neighbor's dog; in the corner was Dudley's first-ever television set, which he'd put his foot through when his favorite program had been canceled; there was a large birdcage, which had once held a parrot that Dudley had swapped at school for a real air rifle, which was up on a shelf with the end all bent because Dudley had sat on it. Other shelves were full of books. They were the only things in the room that looked as though they'd never been touched. 
+
+From downstairs came the sound of Dudley bawling at his mother, I don't want him in there. . . I need that room. . . make him get out. . . "
+
+Harry sighed and stretched out on the bed. Yesterday he'd have given anything to be up here. Today he'd rather be back in his cupboard with that letter than up here without it. 
+
+Next morning at breakfast, everyone was rather quiet. Dudley was in shock. He'd screamed, whacked his father with his Smelting stick, been sick on purpose, kicked his mother, and thrown his tortoise through the greenhouse roof, and he still didn't have his room back. Harry was thinking about this time yesterday and bitterly wishing he'd opened the letter in the hall. Uncle Vernon and Aunt Petunia kept looking at each other darkly. 
+
+When the mail arrived, Uncle Vernon, who seemed to be trying to be nice to Harry, made Dudley go and get it. They heard him banging things with his Smelting stick all the way down the hall. Then he shouted, "There's another one! 'Mr. H. Potter, The Smallest Bedroom, 4 Privet Drive -- '"
+
+With a strangled cry, Uncle Vernon leapt from his seat and ran down the hall, Harry right behind him. Uncle Vernon had to wrestle Dudley to the ground to get the letter from him, which was made difficult by the fact that Harry had grabbed Uncle Vernon around the neck from behind. After a minute of confused fighting, in which everyone got hit a lot by the Smelting stick, Uncle Vernon straightened up, gasping for breath, with Harry's letter clutched in his hand. 
+
+"Go to your cupboard -- I mean, your bedroom," he wheezed at Harry. "Dudley -- go -- just go. "
+
+Harry walked round and round his new room. Someone knew he had moved out of his cupboard and they seemed to know he hadn't received his first letter. Surely that meant they'd try again? And this time he'd make sure they didn't fail. He had a plan. 

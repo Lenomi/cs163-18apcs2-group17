@@ -6,17 +6,89 @@
 2.txt
 02.txt
 002.txt
-3.txt
+3.txtdata1.txt
+data10.txt
+data11.txt
+data12.txt
+data13.txt
+data14.txt
+data15.txt
+data16.txt
+data17.txt
+data18.txt
+data19.txt
+data2.txt
+data20.txt
+data21.txt
+data22.txt
+data23.txt
+data24.txt
+data25.txt
+data3.txt
+data4.txt
+data5.txt
+data6.txt
+data7.txt
+data8.txt
+data9.txt
+data26.txt
+data27.txt
+data28.txt
+data29.txt
+data30.txt
+data31.txt
+data32.txt
+data33.txt
+data34.txt
+data35.txt
+data36.txt
+data37.txt
+data38.txt
+data39.txt
+data40.txt
+data41.txt
+data42.txt
+data43.txt
+data44.txt
+data45.txt
+data46.txt
+data47.txt
+data48.txt
+data49.txt
+data50.txt
+data51.txt
+data52.txt
+data53.txt
+data54.txt
+data55.txt
+data56.txt
+data57.txt
+data58.txt
+data59.txt
+data60.txt
+data61.txt
+data62.txt
+data63.txt
+data64.txt
+data65.txt
+data66.txt
+data67.txt
+data68.txt
+data69.txt
+data70.txt
+data71.txt
+data72.txt
+data73.txt
+data74.txt
+data75.txt
 03.txt
 003.txt
 4.txt
 04.txt
 004.txt
-5 Times People Used Trees to Change the World.txt
 5.txt
 05.txt
 005.txt
-6 Amazing Structures Built by Surprising Creatures.txt
 6.txt
 06.txt
 006.txt
@@ -30,16 +102,12 @@
 09.txt
 009.txt
 10 2.txt
-10 cool summer destinations in US .txt
-10 unforgettable animal-watching adventures'.txt
 10.txt
 010.txt
 11 2.txt
 11.txt
 011.txt
 12 2.txt
-12 travel books you won't be able to put down this summer.txt
-12-foot bird lived alongside early human relatives, fossils reveal.txt
 12.txt
 012.txt
 13 2.txt
@@ -61,7 +129,6 @@
 18.txt
 018.txt
 19 2.txt
-19 iconic trees around the world.txt
 19.txt
 019.txt
 20 2.txt
@@ -308,23 +375,6 @@
 100 2.txt
 100 3.txt
 100.txt
-african elephant.txt
-Ancient DNA reveals new twists in Neanderthal migration.txt
-Apollo 8's commander reflects on the sights and sounds of the space age.txt
-arctic fox.txt
-Artificial islands older than Stonehenge stump scientists.txt
-Bald Eagle.txt
-Before plastic, rubber filled American homes.txt
-Bengal Tiger.txt
-Bizarre radio burst traced back to its origin in deep space.txt
-Blacktip Shark.txt
-burmese python.txt
-Caecilians.txt
-Celebrating 50 years of discovery.txt
-cheetar.txt
-Chinese Paddlefish.txt
-Chinese Sturgeon.txt
-Climate change creates a new migration crisis for Bangladesh.txt
 Data1.txt
 Data2.txt
 Data3.txt
@@ -11208,61 +11258,3 @@ Gruop18News72.txt
 Gruop18News73.txt
 Gruop18News74.txt
 Gruop18News75.txt
-He created an app that put China's worst polluters on watch.txt
-Here is the ultimate hot springs road trip in Colorado.txt
-Horse.txt
-How archaeologists determine the date of ancient sites and artifacts.txt
-How sustainable plantations help save Uganda's decimated forests.txt
-How to celebrate summer in the world's coldest city.txt
-How to stay safe from tornadoes.txt
-How whales and dolphins may be harmed by new seismic airgun approval.txt
-Iceland's tallest church was inspired by volcanoes.txt
-INSIDER'S GUIDEs CRUISING THE GALAPAGOS.txt
-jaguar.txt
-Kids suing governments about climate It's a global trend.txt
-King Cobra.txt
-koala.txt
-KOALAS 101.txt
-Komodo Dragon.txt
-lion.txt
-owl.txt
-Pangolins.txt
-Photo of the Day.txt
-Photos show Hurricane Michael's historic strength.txt
-Physicists discover croissant-shaped twists of light.txt
-Pictures Capture the Invisible Glow of Flowers.txt
-Pilot's stunning aerial desert picture wins National Geographic's 2018 photo contest.txt
-Plant-eating crocodiles thrived in dinosaur times.txt
-PLASTIC CUTLERY.txt
-Plastic in the North Atlantic has tripled since the 1960s.txt
-polar bear.txt
-praying mantis.txt
-red fox.txt
-red panda.txt
-Sapa Trekking Vietnam's Emerald North.txt
-See the drastic toll climate change is taking on our oceans.txt
-She designs high-tech responses to human health problems.txt
-SNOW LEOPARDS.txt
-test.txt
-The brief (and bizarre) history of selfies in space.txt
-The last five years were the hottest ever recorded.txt
-The Surprising Origins of Hawaii's Feral Chickens.txt
-These are the most endangered U.S. rivers.txt
-These monkeys are 3,000 years into their own 'Stone Age'.txt
-This map shows millions of acres of lost Amazon rainforest.txt
-This Teenage Girl Made a Plastic Bag From Shrimp.txt
-This vanishing forest protects the coasts and lives of two countries.txt
-This young nuclear engineer has a new plan for clean energy.txt
-Time-lapse shows how 337 dead whales can reshape a landscape.txt
-Vietnam Travel Guide.txt
-Vietnam.txt
-Vintage Images of Yellowstone Show the Park's Wild Beauty.txt
-We visited the border wall. Here's what it looks like.txt
-What's really in Antarctica's mysterious blood falls.txt
-When dragons, unicorns and lions dance.txt
-Who were the Vikings.txt
-Why are we afraid of sharks.txt
-Why California's wildfires are so hard to fight.txt
-Why storm surges and flooding are the biggest hurricane hazards.txt
-wolf.txt
-You voted Here's our top photo of the year.txt
